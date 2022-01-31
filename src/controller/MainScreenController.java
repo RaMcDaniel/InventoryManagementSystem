@@ -97,6 +97,11 @@ public class MainScreenController implements Initializable {
      */
     public void onDeletePart(ActionEvent actionEvent) {
         System.out.println("clicky3");
+        Part SP = (Part)partsTable.getSelectionModel().getSelectedItem();
+        if (SP==null){
+            return;
+        }
+        parts.remove(SP);
     }
 
     /** This method is called when Add button is clicked under the products table.
@@ -121,6 +126,11 @@ public class MainScreenController implements Initializable {
      */
     public void onDeleteProduct(ActionEvent actionEvent) {
         System.out.println("clicky6");
+        Part SP = (Part)productsTable.getSelectionModel().getSelectedItem();
+        if (SP==null){
+            return;
+        }
+        products.remove(SP);
     }
 
     /** This method is called when Exit button is clicked on the main screen.
