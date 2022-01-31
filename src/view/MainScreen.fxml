@@ -121,7 +121,7 @@
             <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.rowIndex="2" />
             <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <children>
-                  <Button alignment="CENTER" mnemonicParsing="false" text="Exit" textAlignment="CENTER" textFill="#227b3f" StackPane.alignment="CENTER_RIGHT">
+                  <Button fx:id="mainScreenExit" alignment="CENTER" mnemonicParsing="false" onAction="#onMainScreenExit" text="Exit" textAlignment="CENTER" textFill="#227b3f" StackPane.alignment="CENTER_RIGHT">
                      <StackPane.margin>
                         <Insets right="45.0" />
                      </StackPane.margin>

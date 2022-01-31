@@ -26,6 +26,7 @@ public class MainScreenController implements Initializable {
     public Button addProduct;
     public Button modifyProduct;
     public Button deleteProduct;
+    public Button mainScreenExit;
 
     /** This method is auto-created by extending Initializable.
      * It is the first thing in this object to be called.
@@ -43,6 +44,7 @@ public class MainScreenController implements Initializable {
      * @param actionEvent
      */
     public void onAddPart(ActionEvent actionEvent) {
+        System.out.println("clicky1");
     }
 
     /** This method is called when Modify button is clicked under the parts table.
@@ -50,6 +52,7 @@ public class MainScreenController implements Initializable {
      * @param actionEvent
      */
     public void onModifyPart(ActionEvent actionEvent) {
+        System.out.println("clicky2");
     }
 
     /** This method is called when Delete button is clicked under the parts table.
@@ -57,6 +60,7 @@ public class MainScreenController implements Initializable {
      * @param actionEvent
      */
     public void onDeletePart(ActionEvent actionEvent) {
+        System.out.println("clicky3");
     }
 
     /** This method is called when Add button is clicked under the products table.
@@ -64,6 +68,7 @@ public class MainScreenController implements Initializable {
      * @param actionEvent
      */
     public void onAddProduct(ActionEvent actionEvent) {
+        System.out.println("clicky4");
     }
 
     /** This method is called when Modify button is clicked under the products table.
@@ -71,6 +76,7 @@ public class MainScreenController implements Initializable {
      * @param actionEvent
      */
     public void onModifyProduct(ActionEvent actionEvent) {
+        System.out.println("clicky5");
     }
 
     /** This method is called when Delete button is clicked under the products table.
@@ -78,5 +84,14 @@ public class MainScreenController implements Initializable {
      * @param actionEvent
      */
     public void onDeleteProduct(ActionEvent actionEvent) {
+        System.out.println("clicky6");
+    }
+
+    /** This method is called when Exit button is clicked on the main screen.
+     *
+     * @param actionEvent
+     */
+    public void onMainScreenExit(ActionEvent actionEvent) {
+        System.out.println("clicky exit");
     }
 }
