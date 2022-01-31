@@ -32,11 +32,11 @@ public class MainScreenController implements Initializable {
     public Button deleteProduct;
     public Button mainScreenExit;
 
-    private ObservableList<Part> parts = FXCollections.observableArrayList();
-    private ObservableList<Part> products = FXCollections.observableArrayList();
+    public static ObservableList<Part> parts = FXCollections.observableArrayList();
+    public static ObservableList<Part> products = FXCollections.observableArrayList();
 
     /** This method adds parts objects to parts list.
-     *
+     * USELESS??? BC not static? DELETE?
      * @param part The part to be added to parts list.
      */
     public void addPart(Part part){
@@ -44,7 +44,7 @@ public class MainScreenController implements Initializable {
     }
 
     /** This method adds parts objects to products list.
-     *
+     * USELESS??? BC not static? DELETE?
      * @param product The product to be added to products list.
      */
     public void addProduct(Part product){

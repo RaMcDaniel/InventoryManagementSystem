@@ -27,7 +27,6 @@ public class Main extends Application {
 
     /** This method adds test data for debugging.
      * Do not use in production. This is only for debugging.
-     * ----NOT WORKING BC YOU NEED TO MAKE CONCRETE CLASSES UNDER PART---- go to 1445 in make test data video
       */
     private void addTestData() {
         InHouse fork = new InHouse(1, "fork", 1.99, 10, 5, 15, "silverware");
@@ -38,12 +37,12 @@ public class Main extends Application {
         Outsourced pan = new Outsourced(5, "pan", 11.99, 3, 1, 5, "Staub");
         Outsourced kettle = new Outsourced(6, "kettle", 20.99, 3, 1, 5, "tea");
 
-        MainScreenController.addPart();
-        /**
-         * I can't seem to add anything bc of static bullshit. Mrrrrr
-         */
-
-
+        MainScreenController.parts.add(fork);
+        MainScreenController.parts.add(spoon);
+        MainScreenController.parts.add(pot);
+        MainScreenController.products.add(knife);
+        MainScreenController.products.add(pan);
+        MainScreenController.products.add(kettle);
     }
 
 
