@@ -1,5 +1,9 @@
 package main;
 
+import model.InHouse;
+import model.Outsourced;
+import controller.MainScreenController;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -11,10 +15,34 @@ import javafx.stage.Stage;
 public class Main extends Application {
     @Override
     public void start(Stage stage) throws Exception {
+        
+        addTestData();
+        
         Parent root = FXMLLoader.load(getClass().getResource("/view/MainScreen.fxml"));
         stage.setTitle("C482 Performance Assessment");
         stage.setScene(new Scene(root, 800, 600));
         stage.show();
+
+    }
+
+    /** This method adds test data for debugging.
+     * Do not use in production. This is only for debugging.
+     * ----NOT WORKING BC YOU NEED TO MAKE CONCRETE CLASSES UNDER PART---- go to 1445 in make test data video
+      */
+    private void addTestData() {
+        InHouse fork = new InHouse(1, "fork", 1.99, 10, 5, 15, "silverware");
+        InHouse spoon = new InHouse(2, "spoon", 2.99, 10, 5, 15, "silverware");
+        InHouse knife = new InHouse(3, "knife", 3.99, 10, 5, 15, "silverware");
+
+        Outsourced pot = new Outsourced(4, "pot", 10.99, 3, 1, 5, "Staub");
+        Outsourced pan = new Outsourced(5, "pan", 11.99, 3, 1, 5, "Staub");
+        Outsourced kettle = new Outsourced(6, "kettle", 20.99, 3, 1, 5, "tea");
+
+        MainScreenController.addPart();
+        /**
+         * I can't seem to add anything bc of static bullshit. Mrrrrr
+         */
+
 
     }
 
