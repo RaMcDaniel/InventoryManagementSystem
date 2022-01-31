@@ -5,7 +5,6 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-
 <AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainScreen">
    <children>
       <GridPane layoutX="287.0" layoutY="210.0" prefHeight="600.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -33,19 +32,21 @@
                <children>
                   <BorderPane prefHeight="200.0" prefWidth="200.0">
                      <center>
-                        <TableView prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                        <TableView fx:id="partsTable" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                           <columns>
-                            <TableColumn prefWidth="75.0" text="C1" />
-                            <TableColumn prefWidth="75.0" text="C2" />
+                            <TableColumn fx:id="partIDCol" prefWidth="57.00000077486038" text="Part ID" />
+                            <TableColumn fx:id="partNameCol" prefWidth="149.99999618530273" text="Part Name" />
+                              <TableColumn fx:id="partInventoryCol" prefWidth="106.00001525878906" text="Inventory Level" />
+                              <TableColumn fx:id="partCostUnitCol" prefWidth="89.20001220703125" text="Cost per Unit" />
                           </columns>
                         </TableView>
                      </center>
                      <bottom>
                         <ButtonBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                           <buttons>
-                            <Button mnemonicParsing="false" text="Add" />
-                              <Button mnemonicParsing="false" text="Modify" />
-                              <Button mnemonicParsing="false" text="Delete" />
+                            <Button fx:id="addPart" mnemonicParsing="false" onAction="#onAddPart" text="Add" />
+                              <Button fx:id="modifyPart" mnemonicParsing="false" onAction="#onModifyPart" text="Modify" />
+                              <Button fx:id="deletePart" mnemonicParsing="false" onAction="#onDeletePart" text="Delete" />
                           </buttons>
                         </ButtonBar>
                      </bottom>
@@ -76,19 +77,21 @@
                <children>
                   <BorderPane prefHeight="200.0" prefWidth="200.0">
                      <center>
-                        <TableView prefHeight="367.0" prefWidth="400.0" BorderPane.alignment="CENTER">
+                        <TableView fx:id="productsTable" prefHeight="367.0" prefWidth="400.0" BorderPane.alignment="CENTER">
                           <columns>
-                            <TableColumn prefWidth="75.0" text="C1" />
-                            <TableColumn prefWidth="75.0" text="C2" />
+                            <TableColumn fx:id="productIDCol" prefWidth="68.20001220703125" text="Product ID" />
+                            <TableColumn fx:id="productNameCol" prefWidth="155.0" text="Product Name" />
+                              <TableColumn fx:id="productInventoryCol" minWidth="0.0" prefWidth="95.4000244140625" text="Inventory Level" />
+                              <TableColumn fx:id="productCostUnitCol" prefWidth="80.00006103515625" text="Cost per Unit" />
                           </columns>
                         </TableView>
                      </center>
                      <bottom>
                         <ButtonBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                           <buttons>
-                            <Button mnemonicParsing="false" text="Add" />
-                              <Button mnemonicParsing="false" text="Modify" />
-                              <Button mnemonicParsing="false" text="Delete" />
+                            <Button fx:id="addProduct" mnemonicParsing="false" onAction="#onAddProduct" text="Add" />
+                              <Button fx:id="modifyProduct" mnemonicParsing="false" onAction="#onModifyProduct" text="Modify" />
+                              <Button fx:id="deleteProduct" mnemonicParsing="false" onAction="#onDeleteProduct" text="Delete" />
                           </buttons>
                         </ButtonBar>
                      </bottom>
