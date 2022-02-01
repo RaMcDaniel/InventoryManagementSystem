@@ -29,13 +29,13 @@ public class Main extends Application {
      * Do not use in production. This is only for debugging.
       */
     private void addTestData() {
-        InHouse fork = new InHouse(1, "fork", 1.99, 10, 5, 15, "silverware");
-        InHouse spoon = new InHouse(2, "spoon", 2.99, 10, 5, 15, "silverware");
-        InHouse knife = new InHouse(3, "knife", 3.99, 10, 5, 15, "silverware");
+        InHouse fork = new InHouse(900, "fork", 1.99, 10, 5, 15, "silverware");
+        InHouse spoon = new InHouse(901, "spoon", 2.99, 10, 5, 15, "silverware");
+        InHouse knife = new InHouse(902, "knife", 3.99, 10, 5, 15, "silverware");
 
-        Outsourced pot = new Outsourced(4, "pot", 10.99, 3, 1, 5, "Staub");
-        Outsourced pan = new Outsourced(5, "pan", 11.99, 3, 1, 5, "Staub");
-        Outsourced kettle = new Outsourced(6, "kettle", 20.99, 3, 1, 5, "tea");
+        Outsourced pot = new Outsourced(903, "pot", 10.99, 3, 1, 5, "Staub");
+        Outsourced pan = new Outsourced(904, "pan", 11.99, 3, 1, 5, "Staub");
+        Outsourced kettle = new Outsourced(905, "kettle", 20.99, 3, 1, 5, "tea");
 
         MainScreenController.parts.add(fork);
         MainScreenController.parts.add(spoon);
