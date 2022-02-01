@@ -7,6 +7,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import model.Part;
 
@@ -31,25 +32,13 @@ public class MainScreenController implements Initializable {
     public Button modifyProduct;
     public Button deleteProduct;
     public Button mainScreenExit;
+    public TextField partSearchBar;
+    public TextField productSearchBar;
 
     public static ObservableList<Part> parts = FXCollections.observableArrayList();
     public static ObservableList<Part> products = FXCollections.observableArrayList();
 
-    /** This method adds parts objects to parts list.
-     * USELESS??? BC not static? DELETE?
-     * @param part The part to be added to parts list.
-     */
-    public void addPart(Part part){
-        parts.add(part);
-    }
 
-    /** This method adds parts objects to products list.
-     * USELESS??? BC not static? DELETE?
-     * @param product The product to be added to products list.
-     */
-    public void addProduct(Part product){
-        products.add(product);
-    }
 
     /** This method is auto-created by extending Initializable.
      * It is the first thing in this object to be called.
@@ -75,69 +64,199 @@ public class MainScreenController implements Initializable {
 
     }
 
+    /** This method takes a user provided string and searches for matching parts by name.
+     *
+     * @param partialName This is a user-typed string.
+     * @return This is a partial list of parts, containing those that meet the criteria.
+     */
+    private ObservableList<Part> searchByPartName(String partialName){
+        ObservableList<Part> partNameList = FXCollections.observableArrayList();
+        ObservableList<Part> allParts = Part.getAllParts();
+        for(Part part : allParts){
+            if(part.getName().contains(partialName)){
+                partNameList.add(part);
+            }
+        }
+        return partNameList;
+    }
+
+    /** This method takes a user provided string and searches for matching parts by ID.
+     *
+     * @param ID This is a user-typed string.
+     * @return This is a partial list of parts, containing those that meet the criteria.
+     */
+    private Part getPartByID(int ID){
+        ObservableList<Part> allParts = Part.getAllParts();
+        for(Part part : allParts){
+            if (part.getId() == ID){
+                return part;
+            }
+        }
+        return null;
+    }
+
+    /** This method takes a user provided string and searches for matching products by name.
+     *
+     * @param partialName This is a user-typed string.
+     * @return This is a partial list of products, containing those that meet the criteria.
+     */
+    private ObservableList<Part> searchByProductName(String partialName){
+        ObservableList<Part> productNameList = FXCollections.observableArrayList();
+        ObservableList<Part> allProducts = Part.getAllProducts();
+        for(Part product : allProducts){
+            if(product.getName().contains(partialName)){
+                productNameList.add(product);
+            }
+        }
+        return productNameList;
+    }
+
+    /** This method takes a user provided string and searches for matching products by ID.
+     *
+     * @param ID This is a user-typed string.
+     * @return This is a partial list of products, containing those that meet the criteria.
+     */
+    private Part getProductByID(int ID){
+        ObservableList<Part> allProducts = Part.getAllProducts();
+        for(Part product : allProducts){
+            if (product.getId() == ID){
+                return product;
+            }
+        }
+        return null;
+    }
+
     /** This method is called when Add button is clicked under the parts table.
      *
-     * @param actionEvent
+     * @param actionEvent Not necessary to specify.
      */
     public void onAddPart(ActionEvent actionEvent) {
-        System.out.println("clicky1");
+        System.out.println("click 1");
     }
 
     /** This method is called when Modify button is clicked under the parts table.
      *
-     * @param actionEvent
+     * @param actionEvent Not necessary to specify.
      */
     public void onModifyPart(ActionEvent actionEvent) {
-        System.out.println("clicky2");
+        System.out.println("click 2");
     }
 
     /** This method is called when Delete button is clicked under the parts table.
      *
-     * @param actionEvent
+     * @param actionEvent Not necessary to specify.
      */
     public void onDeletePart(ActionEvent actionEvent) {
-        System.out.println("clicky3");
+        System.out.println("click 3");
         Part SP = (Part)partsTable.getSelectionModel().getSelectedItem();
         if (SP==null){
             return;
         }
         parts.remove(SP);
+        System.out.println(SP.getName() + " has been removed.");
+        partsTable.setItems(Part.getAllParts());
     }
 
     /** This method is called when Add button is clicked under the products table.
      *
-     * @param actionEvent
+     * @param actionEvent Not necessary to specify.
      */
     public void onAddProduct(ActionEvent actionEvent) {
-        System.out.println("clicky4");
+        System.out.println("click 4");
     }
 
     /** This method is called when Modify button is clicked under the products table.
      *
-     * @param actionEvent
+     * @param actionEvent Not necessary to specify.
      */
     public void onModifyProduct(ActionEvent actionEvent) {
-        System.out.println("clicky5");
+        System.out.println("click 5");
     }
 
     /** This method is called when Delete button is clicked under the products table.
      *
-     * @param actionEvent
+     * @param actionEvent Not necessary to specify.
      */
     public void onDeleteProduct(ActionEvent actionEvent) {
-        System.out.println("clicky6");
+        System.out.println("click 6");
         Part SP = (Part)productsTable.getSelectionModel().getSelectedItem();
         if (SP==null){
             return;
         }
         products.remove(SP);
+        System.out.println(SP.getName() + " has been removed.");
+        productsTable.setItems(Part.getAllProducts());
     }
 
     /** This method is called when Exit button is clicked on the main screen.
      *
-     * @param actionEvent
+     * @param actionEvent Not necessary to specify.
      */
     public void onMainScreenExit(ActionEvent actionEvent) {
-        System.out.println("clicky exit");
+        System.out.println("click exit");
+    }
+
+    /** This method gets text the user types in the search bar and displays parts that match.
+     * It calls a name search and an ID search method to check by both of those.
+     * @param actionEvent Not necessary to specify.
+     */
+    public void onTypePartSearch(ActionEvent actionEvent) {
+        String query = partSearchBar.getText();
+
+        ObservableList<Part> parts = searchByPartName(query);
+        partsTable.setItems(parts);
+        partSearchBar.setText("");
+
+        if(parts.isEmpty()){
+          try {
+              int ID = Integer.parseInt(query);
+              Part part = getPartByID(ID);
+              if(part != null){
+                  parts.add(part);
+              }
+              else{
+                  System.out.println("No Part containing " + query + " was found");
+                  partsTable.setItems(Part.getAllParts());
+              }
+          }
+          catch (NumberFormatException n){
+              System.out.println("No Part containing " + query + " was found");
+          }
+        }
+        if(partSearchBar.getText() == null){
+            partsTable.setItems(Part.getAllParts());
+        }
+    }
+
+    /** This method gets text the user types in the search bar and displays products that match.
+     * It calls a name search and an ID search method to check by both of those.
+     * @param actionEvent Not necessary to specify.
+     */
+    public void onTypeProductSearch(ActionEvent actionEvent) {
+        String query = productSearchBar.getText();
+
+        ObservableList<Part> products = searchByProductName(query);
+        productsTable.setItems(products);
+        productSearchBar.setText("");
+
+        if(products.isEmpty()){
+            try {
+                int ID = Integer.parseInt(query);
+                Part product = getProductByID(ID);
+                if(product != null){
+                    products.add(product);
+                }
+                else{
+                    System.out.println("No Product containing " + query + " was found");
+                    productsTable.setItems(Part.getAllProducts());
+                }
+            }
+            catch (NumberFormatException n){
+                System.out.println("No Product containing " + query + " was found");
+            }
+        }
+        if(productSearchBar.getText() == null){
+            productsTable.setItems(Part.getAllProducts());
+        }
     }
 }

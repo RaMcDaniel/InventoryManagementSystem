@@ -1,5 +1,11 @@
 package model;
 
+import controller.MainScreenController;
+import javafx.collections.ObservableList;
+
+/** This is a concrete subclass of Part.
+ * Objects in this class have a company name in addition to the Part parameters.
+ */
 public class Outsourced extends Part{
 
     private String company;

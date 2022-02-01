@@ -2,6 +2,9 @@ package model; /**
 * Supplied class Part.java 
  */
 
+import controller.MainScreenController;
+import javafx.collections.ObservableList;
+
 /**
  *
  * @author Place Your Name Here
@@ -105,5 +108,20 @@ public abstract class Part {
     public void setMax(int max) {
         this.max = max;
     }
-    
+
+    /** This method returns a list of all current parts for use in other methods.
+     *
+     * @return an observable list of all parts in the part list.
+     */
+    public static ObservableList<Part> getAllParts() {
+        return MainScreenController.parts;
+    }
+
+    /** This method returns a list of all current products for use in other methods.
+     *
+     * @return an observable list of all products in the product list.
+     */
+    public static ObservableList<Part> getAllProducts() {
+        return MainScreenController.products;
+    }
 }
