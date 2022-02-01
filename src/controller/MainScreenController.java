@@ -3,12 +3,18 @@ package controller;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 import model.Part;
 import model.Alerts;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -129,16 +135,26 @@ public class MainScreenController implements Initializable {
      *
      * @param actionEvent Not necessary to specify.
      */
-    public void onAddPart(ActionEvent actionEvent) {
-        System.out.println("click 1");
+    public void onAddPart(ActionEvent actionEvent) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/view/AddPart.fxml"));
+        Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root, 600, 400);
+        stage.setTitle("Add Part");
+        stage.setScene(scene);
+        stage.show();
     }
 
     /** This method is called when Modify button is clicked under the parts table.
      *
      * @param actionEvent Not necessary to specify.
      */
-    public void onModifyPart(ActionEvent actionEvent) {
-        System.out.println("click 2");
+    public void onModifyPart(ActionEvent actionEvent) throws IOException{
+        Parent root = FXMLLoader.load(getClass().getResource("/view/ModifyPart.fxml"));
+        Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root, 600, 400);
+        stage.setTitle("Modify Part");
+        stage.setScene(scene);
+        stage.show();
     }
 
     /** This method is called when Delete button is clicked under the parts table.
@@ -146,7 +162,6 @@ public class MainScreenController implements Initializable {
      * @param actionEvent Not necessary to specify.
      */
     public void onDeletePart(ActionEvent actionEvent) {
-        System.out.println("click 3");
         Part SP = (Part)partsTable.getSelectionModel().getSelectedItem();
         if (SP==null){
             Alerts.noneSelected.showAndWait();
@@ -155,7 +170,7 @@ public class MainScreenController implements Initializable {
         Optional<ButtonType> result = Alerts.delete.showAndWait();
         if(result.isPresent() && result.get() == ButtonType.OK){
             parts.remove(SP);
-            System.out.println(SP.getName() + " has been removed.");
+            //System.out.println(SP.getName() + " has been removed.");
         }
         partsTable.setItems(Part.getAllParts());
     }
@@ -165,7 +180,6 @@ public class MainScreenController implements Initializable {
      * @param actionEvent Not necessary to specify.
      */
     public void onAddProduct(ActionEvent actionEvent) {
-        System.out.println("click 4");
     }
 
     /** This method is called when Modify button is clicked under the products table.
@@ -173,7 +187,6 @@ public class MainScreenController implements Initializable {
      * @param actionEvent Not necessary to specify.
      */
     public void onModifyProduct(ActionEvent actionEvent) {
-        System.out.println("click 5");
     }
 
     /** This method is called when Delete button is clicked under the products table.
@@ -181,7 +194,6 @@ public class MainScreenController implements Initializable {
      * @param actionEvent Not necessary to specify.
      */
     public void onDeleteProduct(ActionEvent actionEvent) {
-        System.out.println("click 6");
         Part SP = (Part)productsTable.getSelectionModel().getSelectedItem();
         if (SP==null){
             Alerts.noneSelected.showAndWait();
@@ -190,7 +202,7 @@ public class MainScreenController implements Initializable {
         Optional<ButtonType> result = Alerts.delete.showAndWait();
         if(result.isPresent() && result.get() == ButtonType.OK){
             products.remove(SP);
-            System.out.println(SP.getName() + " has been removed.");
+            //System.out.println(SP.getName() + " has been removed.");
         }
 
         productsTable.setItems(Part.getAllProducts());
@@ -201,7 +213,6 @@ public class MainScreenController implements Initializable {
      * @param actionEvent Not necessary to specify.
      */
     public void onMainScreenExit(ActionEvent actionEvent) {
-        System.out.println("click exit");
         System.exit(0);
     }
 
@@ -224,13 +235,13 @@ public class MainScreenController implements Initializable {
                   parts.add(part);
               }
               else{
-                  System.out.println("No Part containing " + query + " was found");
+                  //System.out.println("No Part containing " + query + " was found");
                   Alerts.noSuchPart.showAndWait();
                   partsTable.setItems(Part.getAllParts());
               }
           }
           catch (NumberFormatException n){
-              System.out.println("No Part containing " + query + " was found");
+              //System.out.println("No Part containing " + query + " was found");
               Alerts.noSuchPart.showAndWait();
           }
         }
@@ -258,13 +269,13 @@ public class MainScreenController implements Initializable {
                     products.add(product);
                 }
                 else{
-                    System.out.println("No Product containing " + query + " was found");
+                    //System.out.println("No Product containing " + query + " was found");
                     Alerts.noSuchProduct.showAndWait();
                     productsTable.setItems(Part.getAllProducts());
                 }
             }
             catch (NumberFormatException n){
-                System.out.println("No Product containing " + query + " was found");
+                //System.out.println("No Product containing " + query + " was found");
                 Alerts.noSuchProduct.showAndWait();
             }
         }

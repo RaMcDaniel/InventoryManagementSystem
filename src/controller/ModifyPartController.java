@@ -1,9 +1,15 @@
 package controller;
 
 import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -99,6 +105,12 @@ public class ModifyPartController implements Initializable {
      *
      * @param actionEvent Not necessary to specify.
      */
-    public void onCancelButtonMod(ActionEvent actionEvent) {
+    public void onCancelButtonMod(ActionEvent actionEvent) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/view/MainScreen.fxml"));
+        Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root, 800, 600);
+        stage.setTitle("Inventory Management System");
+        stage.setScene(scene);
+        stage.show();
     }
 }
