@@ -4,14 +4,13 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import model.Part;
+import model.Alerts;
 
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class MainScreenController implements Initializable {
@@ -143,17 +142,21 @@ public class MainScreenController implements Initializable {
     }
 
     /** This method is called when Delete button is clicked under the parts table.
-     *
+     * A confirmation box is created, and delete is not completed unless OK is clicked.
      * @param actionEvent Not necessary to specify.
      */
     public void onDeletePart(ActionEvent actionEvent) {
         System.out.println("click 3");
         Part SP = (Part)partsTable.getSelectionModel().getSelectedItem();
         if (SP==null){
+            Alerts.noneSelected.showAndWait();
             return;
         }
-        parts.remove(SP);
-        System.out.println(SP.getName() + " has been removed.");
+        Optional<ButtonType> result = Alerts.delete.showAndWait();
+        if(result.isPresent() && result.get() == ButtonType.OK){
+            parts.remove(SP);
+            System.out.println(SP.getName() + " has been removed.");
+        }
         partsTable.setItems(Part.getAllParts());
     }
 
@@ -181,10 +184,15 @@ public class MainScreenController implements Initializable {
         System.out.println("click 6");
         Part SP = (Part)productsTable.getSelectionModel().getSelectedItem();
         if (SP==null){
+            Alerts.noneSelected.showAndWait();
             return;
         }
-        products.remove(SP);
-        System.out.println(SP.getName() + " has been removed.");
+        Optional<ButtonType> result = Alerts.delete.showAndWait();
+        if(result.isPresent() && result.get() == ButtonType.OK){
+            products.remove(SP);
+            System.out.println(SP.getName() + " has been removed.");
+        }
+
         productsTable.setItems(Part.getAllProducts());
     }
 
@@ -194,6 +202,7 @@ public class MainScreenController implements Initializable {
      */
     public void onMainScreenExit(ActionEvent actionEvent) {
         System.out.println("click exit");
+        System.exit(0);
     }
 
     /** This method gets text the user types in the search bar and displays parts that match.
@@ -216,11 +225,13 @@ public class MainScreenController implements Initializable {
               }
               else{
                   System.out.println("No Part containing " + query + " was found");
+                  Alerts.noSuchPart.showAndWait();
                   partsTable.setItems(Part.getAllParts());
               }
           }
           catch (NumberFormatException n){
               System.out.println("No Part containing " + query + " was found");
+              Alerts.noSuchPart.showAndWait();
           }
         }
         if(partSearchBar.getText() == null){
@@ -248,11 +259,13 @@ public class MainScreenController implements Initializable {
                 }
                 else{
                     System.out.println("No Product containing " + query + " was found");
+                    Alerts.noSuchProduct.showAndWait();
                     productsTable.setItems(Part.getAllProducts());
                 }
             }
             catch (NumberFormatException n){
                 System.out.println("No Product containing " + query + " was found");
+                Alerts.noSuchProduct.showAndWait();
             }
         }
         if(productSearchBar.getText() == null){
