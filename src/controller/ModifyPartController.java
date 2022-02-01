@@ -7,21 +7,20 @@ import javafx.scene.control.*;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class AddPartController implements Initializable {
-
-
-    public RadioButton inHouseRadio;
-    public ToggleGroup partType;
-    public RadioButton outsourcedRadio;
-    public TextField nameField;
-    public TextField inventoryField;
-    public TextField priceField;
-    public TextField maxInventoryField;
-    public TextField machineCompanyField;
-    public TextField minInventoryField;
-    public Button saveButton;
-    public Button cancelButton;
-    public Label machineCompanyLabel;
+public class ModifyPartController implements Initializable {
+    public RadioButton inHouseRadioMod;
+    public ToggleGroup partTypeMod;
+    public RadioButton outsourcedRadioMod;
+    public TextField partIDMod;
+    public TextField nameFieldMod;
+    public TextField inventoryFieldMod;
+    public TextField priceFieldMod;
+    public TextField maxInventoryFieldMod;
+    public TextField machineCompanyFieldMod;
+    public TextField minInventoryFieldMod;
+    public Button saveButtonMod;
+    public Button cancelButtonMod;
+    public Label machineCompanyLabelMod;
 
     /** This method is auto-created by extending Initializable.
      * It is the first thing in this object to be called.
@@ -37,69 +36,69 @@ public class AddPartController implements Initializable {
      *
      * @param actionEvent Not necessary to specify.
      */
-    public void onInHouseRadio(ActionEvent actionEvent) {
+    public void onInHouseRadioMod(ActionEvent actionEvent) {
     }
 
     /**
      *
      * @param actionEvent Not necessary to specify.
      */
-    public void onOutsourcedRadio(ActionEvent actionEvent) {
+    public void onOutsourcedRadioMod(ActionEvent actionEvent) {
     }
 
     /**
      *
      * @param actionEvent Not necessary to specify.
      */
-    public void onNameField(ActionEvent actionEvent) {
+    public void onNameFieldMod(ActionEvent actionEvent) {
     }
 
     /**
      *
      * @param actionEvent Not necessary to specify.
      */
-    public void onInventoryField(ActionEvent actionEvent) {
+    public void onInventoryFieldMod(ActionEvent actionEvent) {
     }
 
     /**
      *
      * @param actionEvent Not necessary to specify.
      */
-    public void onPriceField(ActionEvent actionEvent) {
+    public void onPriceFieldMod(ActionEvent actionEvent) {
     }
 
     /**
      *
      * @param actionEvent Not necessary to specify.
      */
-    public void onMaxInventoryField(ActionEvent actionEvent) {
+    public void onMaxInventoryFieldMod(ActionEvent actionEvent) {
     }
 
     /**
      *
      * @param actionEvent Not necessary to specify.
      */
-    public void onMachineCompanyField(ActionEvent actionEvent) {
+    public void onMachineCompanyFieldMod(ActionEvent actionEvent) {
     }
 
     /**
      *
      * @param actionEvent Not necessary to specify.
      */
-    public void onMinInventoryField(ActionEvent actionEvent) {
+    public void onMinInventoryFieldMod(ActionEvent actionEvent) {
     }
 
     /**
      *
      * @param actionEvent Not necessary to specify.
      */
-    public void onSaveButton(ActionEvent actionEvent) {
+    public void onSaveButtonMod(ActionEvent actionEvent) {
     }
 
     /**
      *
      * @param actionEvent Not necessary to specify.
      */
-    public void onCancelButton(ActionEvent actionEvent) {
+    public void onCancelButtonMod(ActionEvent actionEvent) {
     }
 }
