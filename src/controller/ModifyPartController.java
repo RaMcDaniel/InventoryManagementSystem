@@ -40,18 +40,22 @@ public class ModifyPartController implements Initializable {
 
     }
 
-    /**
+    /**  When radios are toggled to In-House the label and prompt text change.
      *
      * @param actionEvent Not necessary to specify.
      */
     public void onInHouseRadioMod(ActionEvent actionEvent) {
+        machineCompanyLabelMod.setText("Machine ID");
+        machineCompanyFieldMod.setPromptText("Enter machine ID");
     }
 
-    /**
+    /**  When radios are toggled to Outsourced the label and prompt text change.
      *
      * @param actionEvent Not necessary to specify.
      */
     public void onOutsourcedRadioMod(ActionEvent actionEvent) {
+        machineCompanyLabelMod.setText("Company Name");
+        machineCompanyFieldMod.setPromptText("Enter company name");
     }
 
     /**

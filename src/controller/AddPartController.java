@@ -41,18 +41,22 @@ public class AddPartController implements Initializable {
 
     }
 
-    /**
+    /** When radios are toggled to In-House the label and prompt text change.
      *
      * @param actionEvent Not necessary to specify.
      */
     public void onInHouseRadio(ActionEvent actionEvent) {
+        machineCompanyLabel.setText("Machine ID");
+        machineCompanyField.setPromptText("Enter machine ID");
     }
 
-    /**
+    /** When radios are toggled to Outsourced the label and prompt text change.
      *
      * @param actionEvent Not necessary to specify.
      */
     public void onOutsourcedRadio(ActionEvent actionEvent) {
+        machineCompanyLabel.setText("Company Name");
+        machineCompanyField.setPromptText("Enter company name");
     }
 
     /**
