@@ -1,5 +1,7 @@
 package controller;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -10,6 +12,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import model.Alerts;
+import model.Part;
 
 import java.io.IOException;
 import java.net.URL;
@@ -56,11 +59,73 @@ public class AddProductController implements Initializable {
 
     }
 
+    /** This method takes a user provided string and searches for matching parts by name.
+     *
+     * @param partialName This is a user-typed string.
+     * @return This is a partial list of parts, containing those that meet the criteria.
+     */
+    private ObservableList<Part> searchByPartName(String partialName){
+        ObservableList<Part> partNameList = FXCollections.observableArrayList();
+        ObservableList<Part> allParts = Part.getAllParts();
+        for(Part part : allParts){
+            if(part.getName().contains(partialName)){
+                partNameList.add(part);
+            }
+        }
+        return partNameList;
+    }
+
+    /** This method takes a user provided string and searches for matching parts by ID.
+     *
+     * @param ID This is a user-typed string.
+     * @return This is a partial list of parts, containing those that meet the criteria.
+     */
+    private Part getPartByID(int ID){
+        ObservableList<Part> allParts = Part.getAllParts();
+        for(Part part : allParts){
+            if (part.getId() == ID){
+                return part;
+            }
+        }
+        return null;
+    }
+
+
+
+
+
     /** This method
      *
      * @param actionEvent Not necessary to specify.
      */
     public void onAddProductSearchField(ActionEvent actionEvent) {
+        String query = addProductSearchField.getText();
+
+        ObservableList<Part> parts = searchByPartName(query);
+        addProdTable.setItems(parts);
+        addProductSearchField.setText("");
+
+        if(parts.isEmpty()){
+            try {
+                int ID = Integer.parseInt(query);
+                Part part = getPartByID(ID);
+                if(part != null){
+                    parts.add(part);
+                }
+                else{
+                    //System.out.println("No Part containing " + query + " was found");
+                    Alerts.noSuchPart.showAndWait();
+                    addProdTable.setItems(Part.getAllParts());
+                }
+            }
+            catch (NumberFormatException n){
+                //System.out.println("No Part containing " + query + " was found");
+                Alerts.noSuchPart.showAndWait();
+            }
+        }
+        if(addProductSearchField.getText() == null){
+            addProdTable.setItems(Part.getAllParts());
+        }
     }
 
     /** This method is

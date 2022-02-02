@@ -1,5 +1,7 @@
 package controller;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -10,6 +12,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import model.Alerts;
+import model.Part;
 
 import java.io.IOException;
 import java.net.URL;
@@ -50,6 +53,42 @@ public class ModifyProductController implements Initializable {
         modProdCostCol.setCellValueFactory(new PropertyValueFactory<>("price"));
 
     }
+
+    /** This method takes a user provided string and searches for matching parts by name.
+     *
+     * @param partialName This is a user-typed string.
+     * @return This is a partial list of parts, containing those that meet the criteria.
+     */
+    private ObservableList<Part> searchByPartName(String partialName){
+        ObservableList<Part> partNameList = FXCollections.observableArrayList();
+        ObservableList<Part> allParts = Part.getAllParts();
+        for(Part part : allParts){
+            if(part.getName().contains(partialName)){
+                partNameList.add(part);
+            }
+        }
+        return partNameList;
+    }
+
+    /** This method takes a user provided string and searches for matching parts by ID.
+     *
+     * @param ID This is a user-typed string.
+     * @return This is a partial list of parts, containing those that meet the criteria.
+     */
+    private Part getPartByID(int ID){
+        ObservableList<Part> allParts = Part.getAllParts();
+        for(Part part : allParts){
+            if (part.getId() == ID){
+                return part;
+            }
+        }
+        return null;
+    }
+
+
+
+
+
 
     public void onModProductSearchField(ActionEvent actionEvent) {
     }
