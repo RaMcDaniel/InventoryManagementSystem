@@ -207,7 +207,7 @@ public class MainScreenController implements Initializable {
      * @param actionEvent Not necessary to specify.
      */
     public void onDeleteProduct(ActionEvent actionEvent) {
-        Part SP = (Part)productsTable.getSelectionModel().getSelectedItem();
+        Product SP = (Product)productsTable.getSelectionModel().getSelectedItem();
         if (SP==null){
             Alerts.noneSelected.showAndWait();
             return;

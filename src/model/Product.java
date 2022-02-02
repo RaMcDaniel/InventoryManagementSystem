@@ -12,8 +12,15 @@ public class Product {
     private int max;
     private ObservableList<Part> associatedParts;
 
-    public Product(int prodid, String name, double price, int stock, int min, int max, ObservableList associatedParts){
+    public Product(int id, String name, double price, int stock, int min, int max, ObservableList associatedParts){
+        this.id = id;
+        this.name = name;
+        this.price = price;
+        this.stock = stock;
+        this.min = min;
+        this.max = max;
         this.associatedParts = associatedParts;
+
     }
 
     /** This method gets the part ID.
