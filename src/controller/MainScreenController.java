@@ -179,7 +179,13 @@ public class MainScreenController implements Initializable {
      *
      * @param actionEvent Not necessary to specify.
      */
-    public void onAddProduct(ActionEvent actionEvent) {
+    public void onAddProduct(ActionEvent actionEvent) throws IOException{
+        Parent root = FXMLLoader.load(getClass().getResource("/view/AddProduct.fxml"));
+        Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root, 800, 600);
+        stage.setTitle("Add Product");
+        stage.setScene(scene);
+        stage.show();
     }
 
     /** This method is called when Modify button is clicked under the products table.
