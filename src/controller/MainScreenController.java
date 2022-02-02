@@ -13,6 +13,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import model.Part;
 import model.Alerts;
+import model.Product;
 
 import java.io.IOException;
 import java.net.URL;
@@ -41,7 +42,7 @@ public class MainScreenController implements Initializable {
     public TextField productSearchBar;
 
     public static ObservableList<Part> parts = FXCollections.observableArrayList();
-    public static ObservableList<Part> products = FXCollections.observableArrayList();
+    public static ObservableList<Product> products = FXCollections.observableArrayList();
 
 
 
@@ -105,10 +106,10 @@ public class MainScreenController implements Initializable {
      * @param partialName This is a user-typed string.
      * @return This is a partial list of products, containing those that meet the criteria.
      */
-    private ObservableList<Part> searchByProductName(String partialName){
-        ObservableList<Part> productNameList = FXCollections.observableArrayList();
-        ObservableList<Part> allProducts = Part.getAllProducts();
-        for(Part product : allProducts){
+    private ObservableList<Product> searchByProductName(String partialName){
+        ObservableList<Product> productNameList = FXCollections.observableArrayList();
+        ObservableList<Product> allProducts = Product.getAllProducts();
+        for(Product product : allProducts){
             if(product.getName().contains(partialName)){
                 productNameList.add(product);
             }
@@ -121,9 +122,9 @@ public class MainScreenController implements Initializable {
      * @param ID This is a user-typed string.
      * @return This is a partial list of products, containing those that meet the criteria.
      */
-    private Part getProductByID(int ID){
-        ObservableList<Part> allProducts = Part.getAllProducts();
-        for(Part product : allProducts){
+    private Product getProductByID(int ID){
+        ObservableList<Product> allProducts = Product.getAllProducts();
+        for(Product product : allProducts){
             if (product.getId() == ID){
                 return product;
             }
@@ -217,7 +218,7 @@ public class MainScreenController implements Initializable {
             //System.out.println(SP.getName() + " has been removed.");
         }
 
-        productsTable.setItems(Part.getAllProducts());
+        productsTable.setItems(Product.getAllProducts());
     }
 
     /** This method is called when Exit button is clicked on the main screen.
@@ -269,21 +270,21 @@ public class MainScreenController implements Initializable {
     public void onTypeProductSearch(ActionEvent actionEvent) {
         String query = productSearchBar.getText();
 
-        ObservableList<Part> products = searchByProductName(query);
+        ObservableList<Product> products = searchByProductName(query);
         productsTable.setItems(products);
         productSearchBar.setText("");
 
         if(products.isEmpty()){
             try {
                 int ID = Integer.parseInt(query);
-                Part product = getProductByID(ID);
+                Product product = getProductByID(ID);
                 if(product != null){
                     products.add(product);
                 }
                 else{
                     //System.out.println("No Product containing " + query + " was found");
                     Alerts.noSuchProduct.showAndWait();
-                    productsTable.setItems(Part.getAllProducts());
+                    productsTable.setItems(Product.getAllProducts());
                 }
             }
             catch (NumberFormatException n){
@@ -292,7 +293,7 @@ public class MainScreenController implements Initializable {
             }
         }
         if(productSearchBar.getText() == null){
-            productsTable.setItems(Part.getAllProducts());
+            productsTable.setItems(Product.getAllProducts());
         }
     }
 }

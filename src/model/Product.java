@@ -1,29 +1,19 @@
 package model;
-/**
-* Supplied class Part.java 
- */
 
 import controller.MainScreenController;
 import javafx.collections.ObservableList;
 
-/**
- *
- * @author Place Your Name Here
- */
-public abstract class Part {
+public class Product {
     private int id;
     private String name;
     private double price;
     private int stock;
     private int min;
-    private int max;    
-    public Part(int id, String name, double price, int stock, int min, int max) {
-        this.id = id;
-        this.name = name;
-        this.price = price;
-        this.stock = stock;
-        this.min = min;
-        this.max = max;
+    private int max;
+    private ObservableList<Part> associatedParts;
+
+    public Product(int prodid, String name, double price, int stock, int min, int max, ObservableList associatedParts){
+        this.associatedParts = associatedParts;
     }
 
     /** This method gets the part ID.
@@ -67,7 +57,7 @@ public abstract class Part {
     public void setPrice(double price) {
         this.price = price;
     }
-    
+
     /** This method gets the part inventory level.
      * @return the stock
      */
@@ -110,12 +100,24 @@ public abstract class Part {
         this.max = max;
     }
 
-    /** This method returns a list of all current parts for use in other methods.
-     *
-     * @return an observable list of all parts in the part list.
+    /**  This method gets the product's associated list of parts.
+     * @return the list of associated parts.
      */
-    public static ObservableList<Part> getAllParts() {
-        return MainScreenController.parts;
-    }
+    public ObservableList<Part> getAssociatedParts() { return associatedParts;}
 
+    /** This method sets the product's associated list of parts.
+     * @param associatedParts the list of parts.
+     */
+    public void setAssociatedParts(ObservableList<Part> associatedParts) {this.associatedParts = associatedParts;}
+
+
+
+
+    /** This method returns a list of all current products for use in other methods.
+     *
+     * @return an observable list of all products in the product list.
+     */
+    public static ObservableList<Product> getAllProducts() {
+        return MainScreenController.products;
+    }
 }
