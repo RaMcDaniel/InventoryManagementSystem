@@ -9,6 +9,7 @@ import javafx.scene.control.Alert;
  */
 public class Alerts {
 
+    public static Alert cancel = new Alert(Alert.AlertType.CONFIRMATION, "'Cancel' will lose all work on this page and return to main. Would you like to continue?");
     public static Alert noSuchPart = new Alert(Alert.AlertType.ERROR, "No part found matching that criteria");
     public static Alert noSuchProduct = new Alert(Alert.AlertType.ERROR, "No product found matching that criteria");
     public static Alert delete = new Alert(Alert.AlertType.CONFIRMATION, "This will delete selection. Would you like to delete and continue?");

@@ -8,9 +8,11 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+import model.Alerts;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class AddPartController implements Initializable {
@@ -107,11 +109,14 @@ public class AddPartController implements Initializable {
      * @param actionEvent Not necessary to specify.
      */
     public void onCancelButton(ActionEvent actionEvent) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/view/MainScreen.fxml"));
-        Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
-        Scene scene = new Scene(root, 800, 600);
-        stage.setTitle("Inventory Management System");
-        stage.setScene(scene);
-        stage.show();
+        Optional<ButtonType> result = Alerts.cancel.showAndWait();
+        if(result.isPresent() && result.get() == ButtonType.OK) {
+            Parent root = FXMLLoader.load(getClass().getResource("/view/MainScreen.fxml"));
+            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root, 800, 600);
+            stage.setTitle("Inventory Management System");
+            stage.setScene(scene);
+            stage.show();
+        }
     }
 }
