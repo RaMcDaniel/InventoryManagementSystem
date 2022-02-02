@@ -54,6 +54,7 @@ public class ModifyProductController implements Initializable {
 
     }
 
+
     /** This method takes a user provided string and searches for matching parts by name.
      *
      * @param partialName This is a user-typed string.
@@ -85,12 +86,38 @@ public class ModifyProductController implements Initializable {
         return null;
     }
 
-
-
-
-
-
+    /** This method gets text the user types in the search bar and displays parts that match.
+     * It calls a name search and an ID search method to check by both of those.
+     * @param actionEvent Not necessary to specify.
+     */
     public void onModProductSearchField(ActionEvent actionEvent) {
+        String query = modProductSearchField.getText();
+
+        ObservableList<Part> parts = searchByPartName(query);
+        modProdTable.setItems(parts);
+        modProductSearchField.setText("");
+
+        if(parts.isEmpty()){
+            try {
+                int ID = Integer.parseInt(query);
+                Part part = getPartByID(ID);
+                if(part != null){
+                    parts.add(part);
+                }
+                else{
+                    //System.out.println("No Part containing " + query + " was found");
+                    Alerts.noSuchPart.showAndWait();
+                    modProdTable.setItems(Part.getAllParts());
+                }
+            }
+            catch (NumberFormatException n){
+                //System.out.println("No Part containing " + query + " was found");
+                Alerts.noSuchPart.showAndWait();
+            }
+        }
+        if(modProductSearchField.getText() == null){
+            modProdTable.setItems(Part.getAllParts());
+        }
     }
 
     public void onModProdName(ActionEvent actionEvent) {

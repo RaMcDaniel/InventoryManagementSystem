@@ -90,12 +90,8 @@ public class AddProductController implements Initializable {
         return null;
     }
 
-
-
-
-
-    /** This method
-     *
+    /** This method gets text the user types in the search bar and displays parts that match.
+     * It calls a name search and an ID search method to check by both of those.
      * @param actionEvent Not necessary to specify.
      */
     public void onAddProductSearchField(ActionEvent actionEvent) {
