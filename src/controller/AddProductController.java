@@ -44,6 +44,9 @@ public class AddProductController implements Initializable {
     public TableView addProdAssocTable;
     public TableView addProdTable;
 
+    private ObservableList<Part> allParts = Part.getAllParts();
+    private ObservableList<Part> associatedParts = FXCollections.observableArrayList();
+
     /** This method is auto-created by extending Initializable.
      * It is the first thing in this object to be called.
      * @param url PENDING
@@ -51,11 +54,17 @@ public class AddProductController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        addProdTable.setItems(parts);
+        addProdTable.setItems(allParts);
         addProdIDCol.setCellValueFactory(new PropertyValueFactory<>("id"));
         addProdNameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
         addProdInvCol.setCellValueFactory(new PropertyValueFactory<>("stock"));
         addProdCostCol.setCellValueFactory(new PropertyValueFactory<>("price"));
+
+        addProdAssocTable.setItems(associatedParts);
+        addProdAssocIDCol.setCellValueFactory(new PropertyValueFactory<>("id"));
+        addProdAssocNameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
+        addProdAssocInvCol.setCellValueFactory(new PropertyValueFactory<>("stock"));
+        addProdAssocCostCol.setCellValueFactory(new PropertyValueFactory<>("price"));
 
     }
 
@@ -200,13 +209,30 @@ public class AddProductController implements Initializable {
      * @param actionEvent Not necessary to specify.
      */
     public void onAddProdAddAssocPart(ActionEvent actionEvent) {
+        Part part = (Part)addProdTable.getSelectionModel().getSelectedItem();
+        if(part == null){
+            Alerts.noneSelected.showAndWait();
+            return;
+        }
+        allParts.remove(part);
+        associatedParts.add(part);
     }
 
     /** This method is
      *
      * @param actionEvent Not necessary to specify.
      */
-    public void onAddProdRemoveAssocPart(ActionEvent actionEvent) {
+    public void onAddProdRemoveAssocPart(ActionEvent actionEvent) throws IOException {
+        Part part = (Part)addProdAssocTable.getSelectionModel().getSelectedItem();
+        if(part == null) {
+            Alerts.noneSelected.showAndWait();
+            return;
+        }
+        Optional<ButtonType> result = Alerts.remove.showAndWait();
+        if(result.isPresent() && result.get() == ButtonType.OK) {
+            associatedParts.remove(part);
+            allParts.add(part);
+            }
+        }
     }
-}
 
