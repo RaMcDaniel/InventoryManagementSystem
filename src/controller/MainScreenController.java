@@ -192,7 +192,13 @@ public class MainScreenController implements Initializable {
      *
      * @param actionEvent Not necessary to specify.
      */
-    public void onModifyProduct(ActionEvent actionEvent) {
+    public void onModifyProduct(ActionEvent actionEvent) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/view/ModifyProduct.fxml"));
+        Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root, 800, 600);
+        stage.setTitle("Inventory Management System");
+        stage.setScene(scene);
+        stage.show();
     }
 
     /** This method is called when Delete button is clicked under the products table.
