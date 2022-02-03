@@ -15,9 +15,10 @@ import model.Product;
 /** Main the main class, and entry to the program.
  */
 public class Main extends Application {
+    static public int ID_COUNTER = 1;
     @Override
     public void start(Stage stage) throws Exception {
-        
+
         addTestData();
         
         Parent root = FXMLLoader.load(getClass().getResource("/view/MainScreen.fxml"));
@@ -31,9 +32,9 @@ public class Main extends Application {
      * Do not use in production. This is only for debugging.
       */
     private void addTestData() {
-        InHouse fork = new InHouse(900, "fork", 1.99, 10, 5, 15, "silverware");
-        InHouse spoon = new InHouse(901, "spoon", 2.99, 10, 5, 15, "silverware");
-        InHouse knife = new InHouse(902, "knife", 3.99, 10, 5, 15, "silverware");
+        InHouse fork = new InHouse(900, "fork", 1.99, 10, 5, 15, 7);
+        InHouse spoon = new InHouse(901, "spoon", 2.99, 10, 5, 15, 8);
+        InHouse knife = new InHouse(902, "knife", 3.99, 10, 5, 15, 9);
         Outsourced pot = new Outsourced(903, "pot", 10.99, 3, 1, 5, "Staub");
         Outsourced pan = new Outsourced(904, "pan", 11.99, 3, 1, 5, "Staub");
         Outsourced kettle = new Outsourced(905, "kettle", 20.99, 3, 1, 5, "tea");
