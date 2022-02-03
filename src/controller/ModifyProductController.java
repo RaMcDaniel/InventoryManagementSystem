@@ -12,6 +12,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import model.Alerts;
+import model.Inventory;
 import model.Part;
 
 import java.io.IOException;
@@ -19,7 +20,7 @@ import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-import static controller.MainScreenController.parts;
+import static model.Inventory.allParts;
 
 public class ModifyProductController implements Initializable {
     public TextField modProductSearchField;
@@ -46,7 +47,7 @@ public class ModifyProductController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        modProdTable.setItems(parts);
+        modProdTable.setItems(Inventory.allParts);
         modProdIDCol.setCellValueFactory(new PropertyValueFactory<>("id"));
         modProdNameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
         modProdInvCol.setCellValueFactory(new PropertyValueFactory<>("stock"));

@@ -115,7 +115,7 @@ public abstract class Part {
      * @return an observable list of all parts in the part list.
      */
     public static ObservableList<Part> getAllParts() {
-        return MainScreenController.parts;
+        return Inventory.allParts;
     }
 
 }

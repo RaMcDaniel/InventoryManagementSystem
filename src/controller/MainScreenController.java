@@ -11,6 +11,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import model.Inventory;
 import model.Part;
 import model.Alerts;
 import model.Product;
@@ -41,9 +42,6 @@ public class MainScreenController implements Initializable {
     public TextField partSearchBar;
     public TextField productSearchBar;
 
-    public static ObservableList<Part> parts = FXCollections.observableArrayList();
-    public static ObservableList<Product> products = FXCollections.observableArrayList();
-
 
 
     /** This method is auto-created by extending Initializable.
@@ -55,8 +53,8 @@ public class MainScreenController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         System.out.println("I am initialized");
-        partsTable.setItems(parts);
-        productsTable.setItems(products);
+        partsTable.setItems(Inventory.allParts);
+        productsTable.setItems(Inventory.allProducts);
 
         partIDCol.setCellValueFactory(new PropertyValueFactory<>("id"));
         partNameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
@@ -170,7 +168,7 @@ public class MainScreenController implements Initializable {
         }
         Optional<ButtonType> result = Alerts.delete.showAndWait();
         if(result.isPresent() && result.get() == ButtonType.OK){
-            parts.remove(SP);
+            Inventory.allParts.remove(SP);
             //System.out.println(SP.getName() + " has been removed.");
         }
         partsTable.setItems(Part.getAllParts());
@@ -214,7 +212,7 @@ public class MainScreenController implements Initializable {
         }
         Optional<ButtonType> result = Alerts.delete.showAndWait();
         if(result.isPresent() && result.get() == ButtonType.OK){
-            products.remove(SP);
+            Inventory.allProducts.remove(SP);
             //System.out.println(SP.getName() + " has been removed.");
         }
 

@@ -52,15 +52,15 @@ public class Main extends Application {
         Product silverware = new Product(1, "Starter Set", 15.99, 2, 1, 5, fakePartList);
         Product newHome = new Product(2, "New Home", 75.99, 3, 1, 5, fakePartList2);
 
-        MainScreenController.parts.add(fork);
-        MainScreenController.parts.add(spoon);
-        MainScreenController.parts.add(pot);
-        MainScreenController.parts.add(knife);
-        MainScreenController.parts.add(pan);
-        MainScreenController.parts.add(kettle);
+        Inventory.allParts.add(fork);
+        Inventory.allParts.add(spoon);
+        Inventory.allParts.add(pot);
+        Inventory.allParts.add(knife);
+        Inventory.allParts.add(pan);
+        Inventory.allParts.add(kettle);
 
-        MainScreenController.products.add(silverware);
-        MainScreenController.products.add(newHome);
+        Inventory.allProducts.add(silverware);
+        Inventory.allProducts.add(newHome);
 
     }
 

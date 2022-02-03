@@ -19,8 +19,6 @@ import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-import static controller.MainScreenController.parts;
-
 public class AddProductController implements Initializable {
     public TextField addProductSearchField;
     public TextField addProdName;

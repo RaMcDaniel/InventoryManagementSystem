@@ -1,7 +1,5 @@
 package model;
 
-import javafx.collections.ObservableList;
-
 public class InHouse extends Part{
 
     private int machineID;

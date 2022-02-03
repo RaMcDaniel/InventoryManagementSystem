@@ -125,6 +125,6 @@ public class Product {
      * @return an observable list of all products in the product list.
      */
     public static ObservableList<Product> getAllProducts() {
-        return MainScreenController.products;
+        return Inventory.allProducts;
     }
 }

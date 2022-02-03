@@ -1,6 +1,5 @@
 package controller;
 
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -11,12 +10,11 @@ import javafx.scene.control.*;
 import javafx.stage.Stage;
 import model.Alerts;
 import model.InHouse;
+import model.Inventory;
 import model.Outsourced;
-import model.Part;
 
 import java.io.IOException;
 import java.net.URL;
-import java.text.DecimalFormat;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -123,7 +121,7 @@ public class AddPartController implements Initializable {
         {
             float priceFieldInt;
             priceFieldInt = Float.parseFloat(priceEntry);
-            
+
             price = priceFieldInt;
         }
         catch (NumberFormatException e)
@@ -256,7 +254,7 @@ public class AddPartController implements Initializable {
      */
     private void makeNewOutSourced(int id, String name, double price, int stock, int min, int max, String company) {
         Outsourced newOutSourced = new Outsourced(id, name, price, stock, min, max, company);
-        MainScreenController.parts.add(newOutSourced);
+        Inventory.allParts.add(newOutSourced);
     }
 
     /**
@@ -272,7 +270,7 @@ public class AddPartController implements Initializable {
      */
     private void makeNewInHouse(int id, String name, double price, int stock, int min, int max, int machineID) {
         InHouse newInHouse = new InHouse(id, name, price, stock, min, max, machineID);
-        MainScreenController.parts.add(newInHouse);
+        Inventory.allParts.add(newInHouse);
     }
 
     /**
