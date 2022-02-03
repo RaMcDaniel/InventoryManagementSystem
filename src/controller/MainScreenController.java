@@ -100,21 +100,15 @@ public class MainScreenController implements Initializable {
 
     /** This method is called when Delete button is clicked under the parts table.
      * A confirmation box is created, and delete is not completed unless OK is clicked.
-     * -----------CHANGE/MOVE ME-------------
+     *
      * @param actionEvent Not necessary to specify.
      */
     public void onDeletePart(ActionEvent actionEvent) {
         Part SP = (Part)partsTable.getSelectionModel().getSelectedItem();
-        if (SP==null){
-            Alerts.noneSelected.showAndWait();
-            return;
+        boolean delete = Inventory.deletePart(SP);
+        if(delete){
+            partsTable.setItems(Inventory.getAllParts());
         }
-        Optional<ButtonType> result = Alerts.delete.showAndWait();
-        if(result.isPresent() && result.get() == ButtonType.OK){
-            Inventory.getAllParts().remove(SP);
-            //System.out.println(SP.getName() + " has been removed.");
-        }
-        partsTable.setItems(Inventory.getAllParts());
     }
 
     /** This method changes user to the addProduct screen.
@@ -144,7 +138,7 @@ public class MainScreenController implements Initializable {
     }
 
     /** This method is called when Delete button is clicked under the products table.
-     * -----------CHANGE/MOVE ME-------------
+     *
      * @param actionEvent Not necessary to specify.
      */
     public void onDeleteProduct(ActionEvent actionEvent) {

@@ -181,12 +181,19 @@ public class Inventory {
      *
      * @param selectedPart the part to be deleted
      * @return returns true if completed
-
-    public static Boolean deletePart(Part selectedPart){
-        return Boolean;
-    }
      */
-
+    public static Boolean deletePart(Part selectedPart){
+        if (selectedPart==null){
+            Alerts.noneSelected.showAndWait();
+            return false;
+        }
+        Optional<ButtonType> result = Alerts.delete.showAndWait();
+        if(result.isPresent() && result.get() == ButtonType.OK){
+            Inventory.getAllParts().remove(selectedPart);
+        }
+        return true;
+    }
+    
     /** This method deletes a product from a list.
      *
      * @param selectedProduct the product to be deleted
@@ -203,6 +210,5 @@ public class Inventory {
         }
         return true;
     }
-
 }
 
