@@ -89,14 +89,19 @@ public class Inventory {
 
     /** This method looks up a part by ID.
      *
-     * @param PartID the part's ID
+     * @param partID the part's ID
      * @return a part object matching the ID specified
-
-    public static Part lookupPart(int PartID){
-
-        return Part;
-    }
      */
+    public static Part lookupPart(int partID){
+        ObservableList<Part> allParts = Inventory.getAllParts();
+        for(Part part : allParts){
+            if (part.getId() == partID) {
+                return part;
+            }
+        }
+        return null;
+    }
+
 
     /**  This method looks up a product by ID.
      *

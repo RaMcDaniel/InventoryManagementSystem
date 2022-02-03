@@ -72,21 +72,6 @@ public class MainScreenController implements Initializable {
     }
 
 
-    /** This method takes a user provided string and searches for matching parts by ID.
-     * -----------CHANGE/MOVE ME-------------
-     * @param ID This is a user-typed string.
-     * @return This is a partial list of parts, containing those that meet the criteria.
-     */
-    private Part getPartByID(int ID){
-        ObservableList<Part> allParts = Inventory.getAllParts();
-        for(Part part : allParts){
-            if (part.getId() == ID){
-                return part;
-            }
-        }
-        return null;
-    }
-
     /** This method takes a user provided string and searches for matching products by name.
      * -----------CHANGE/MOVE ME-------------
      * @param partialName This is a user-typed string.
@@ -231,7 +216,7 @@ public class MainScreenController implements Initializable {
         if(parts.isEmpty()){
           try {
               int ID = Integer.parseInt(query);
-              Part part = getPartByID(ID);
+              Part part = Inventory.lookupPart(ID);
               if(part != null){
                   parts.add(part);
               }
