@@ -21,6 +21,9 @@ import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
+/** This class controls the FXML file for the main screen.
+ *
+ */
 public class MainScreenController implements Initializable {
     public TableView partsTable;
     public TableColumn partIDCol;
@@ -47,8 +50,8 @@ public class MainScreenController implements Initializable {
     /** This method is auto-created by extending Initializable.
      * It is the first thing in this object to be called.
      * .setItems associates the parts and products observable lists with their respective tables.
-     * @param url PENDING
-     * @param resourceBundle PENDING
+     * @param url Not necessary to specify.
+     * @param resourceBundle Not necessary to specify.
      */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -69,7 +72,7 @@ public class MainScreenController implements Initializable {
     }
 
     /** This method takes a user provided string and searches for matching parts by name.
-     *
+     *-----------CHANGE/MOVE ME-------------
      * @param partialName This is a user-typed string.
      * @return This is a partial list of parts, containing those that meet the criteria.
      */
@@ -85,7 +88,7 @@ public class MainScreenController implements Initializable {
     }
 
     /** This method takes a user provided string and searches for matching parts by ID.
-     *
+     * -----------CHANGE/MOVE ME-------------
      * @param ID This is a user-typed string.
      * @return This is a partial list of parts, containing those that meet the criteria.
      */
@@ -100,7 +103,7 @@ public class MainScreenController implements Initializable {
     }
 
     /** This method takes a user provided string and searches for matching products by name.
-     *
+     * -----------CHANGE/MOVE ME-------------
      * @param partialName This is a user-typed string.
      * @return This is a partial list of products, containing those that meet the criteria.
      */
@@ -116,7 +119,7 @@ public class MainScreenController implements Initializable {
     }
 
     /** This method takes a user provided string and searches for matching products by ID.
-     *
+     * -----------CHANGE/MOVE ME-------------
      * @param ID This is a user-typed string.
      * @return This is a partial list of products, containing those that meet the criteria.
      */
@@ -130,7 +133,7 @@ public class MainScreenController implements Initializable {
         return null;
     }
 
-    /** This method is called when Add button is clicked under the parts table.
+    /** This method changes user to the addPart screen.
      *
      * @param actionEvent Not necessary to specify.
      */
@@ -143,7 +146,7 @@ public class MainScreenController implements Initializable {
         stage.show();
     }
 
-    /** This method is called when Modify button is clicked under the parts table.
+    /** This method changes user to the modifyPart screen.
      *
      * @param actionEvent Not necessary to specify.
      */
@@ -158,6 +161,7 @@ public class MainScreenController implements Initializable {
 
     /** This method is called when Delete button is clicked under the parts table.
      * A confirmation box is created, and delete is not completed unless OK is clicked.
+     * -----------CHANGE/MOVE ME-------------
      * @param actionEvent Not necessary to specify.
      */
     public void onDeletePart(ActionEvent actionEvent) {
@@ -174,7 +178,7 @@ public class MainScreenController implements Initializable {
         partsTable.setItems(Inventory.getAllParts());
     }
 
-    /** This method is called when Add button is clicked under the products table.
+    /** This method changes user to the addProduct screen.
      *
      * @param actionEvent Not necessary to specify.
      */
@@ -187,7 +191,7 @@ public class MainScreenController implements Initializable {
         stage.show();
     }
 
-    /** This method is called when Modify button is clicked under the products table.
+    /** This method changes user to the modifyProduct screen.
      *
      * @param actionEvent Not necessary to specify.
      */
@@ -201,7 +205,7 @@ public class MainScreenController implements Initializable {
     }
 
     /** This method is called when Delete button is clicked under the products table.
-     *
+     * -----------CHANGE/MOVE ME-------------
      * @param actionEvent Not necessary to specify.
      */
     public void onDeleteProduct(ActionEvent actionEvent) {
@@ -220,7 +224,7 @@ public class MainScreenController implements Initializable {
     }
 
     /** This method is called when Exit button is clicked on the main screen.
-     *
+     * It exits the program.
      * @param actionEvent Not necessary to specify.
      */
     public void onMainScreenExit(ActionEvent actionEvent) {
@@ -229,6 +233,7 @@ public class MainScreenController implements Initializable {
 
     /** This method gets text the user types in the search bar and displays parts that match.
      * It calls a name search and an ID search method to check by both of those.
+     * -----------CHANGE/MOVE ME-------------
      * @param actionEvent Not necessary to specify.
      */
     public void onTypePartSearch(ActionEvent actionEvent) {
@@ -263,6 +268,7 @@ public class MainScreenController implements Initializable {
 
     /** This method gets text the user types in the search bar and displays products that match.
      * It calls a name search and an ID search method to check by both of those.
+     * -----------CHANGE/MOVE ME-------------
      * @param actionEvent Not necessary to specify.
      */
     public void onTypeProductSearch(ActionEvent actionEvent) {

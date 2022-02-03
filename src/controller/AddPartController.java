@@ -9,9 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 import model.Alerts;
-import model.InHouse;
 import model.Inventory;
-import model.Outsourced;
 
 import java.io.IOException;
 import java.net.URL;
@@ -20,6 +18,9 @@ import java.util.ResourceBundle;
 
 import static main.Main.ID_COUNTER;
 
+/** This class is the controller for the addPart FXML screen.
+ *
+ */
 public class AddPartController implements Initializable {
 
 
@@ -47,8 +48,8 @@ public class AddPartController implements Initializable {
 
     /** This method is auto-created by extending Initializable.
      * It is the first thing in this object to be called.
-     * @param url PENDING
-     * @param resourceBundle PENDING
+     * @param url Not necessary to specify.
+     * @param resourceBundle Not necessary to specify.
      */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -75,7 +76,7 @@ public class AddPartController implements Initializable {
         inHouseToggle = false;
     }
 
-    /**
+    /** When something is typed in this field, it is validated for alphanumeric characters and saved if valid.
      *
      * @param actionEvent Not necessary to specify.
      */
@@ -90,7 +91,7 @@ public class AddPartController implements Initializable {
         return;
     }
 
-    /**
+    /**  When something is typed in this field, it is validated for integer characters and saved if valid.
      *
      * @param actionEvent Not necessary to specify.
      */
@@ -111,7 +112,7 @@ public class AddPartController implements Initializable {
         return;
     }
 
-    /**
+    /**  When something is typed in this field, it is validated for float characters and saved if valid.
      *
      * @param actionEvent Not necessary to specify.
      */
@@ -133,7 +134,7 @@ public class AddPartController implements Initializable {
         return;
     }
 
-    /**
+    /**  When something is typed in this field, it is validated for integer characters and saved if valid.
      *
      * @param actionEvent Not necessary to specify.
      */
@@ -154,8 +155,8 @@ public class AddPartController implements Initializable {
         return;
     }
 
-    /**
-     *
+    /**  When something is typed in this field, it is validated, and saved if valid.
+     * It validates for machineID integers or company name Strings depending on the inHouse toggle.
      * @param actionEvent Not necessary to specify.
      */
     public void onMachineCompanyField(ActionEvent actionEvent) {
@@ -187,7 +188,7 @@ public class AddPartController implements Initializable {
         }
     }
 
-    /**
+    /**  When something is typed in this field, it is validated for integer characters and saved if valid.
      *
      * @param actionEvent Not necessary to specify.
      */
@@ -208,8 +209,8 @@ public class AddPartController implements Initializable {
         return;
     }
 
-    /**
-     *
+    /** When the save button is clicked, it saves the part information to a new part object, and clears the variables.
+     * It then returns to the main screen.
      * @param actionEvent Not necessary to specify.
      */
     public void onSaveButton(ActionEvent actionEvent) throws IOException {
@@ -238,7 +239,7 @@ public class AddPartController implements Initializable {
 
 
 
-    /**
+    /** When cancel is clicked, nothing is saved or created, and you return to the main screen.
      *
      * @param actionEvent Not necessary to specify.
      */

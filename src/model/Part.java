@@ -3,12 +3,10 @@ package model;
 * Supplied class Part.java 
  */
 
-import controller.MainScreenController;
-import javafx.collections.ObservableList;
 
-/**
+/** This is an abstract class for parts, and the methods to view and change them.
  *
- * @author Place Your Name Here
+ * @author Rebecca McDaniel
  */
 public abstract class Part {
     private int id;

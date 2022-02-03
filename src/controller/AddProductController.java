@@ -20,6 +20,9 @@ import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
+/** This class controls the addProduct FXML screen.
+ *
+ */
 public class AddProductController implements Initializable {
     public TextField addProductSearchField;
     public TextField addProdName;
@@ -48,8 +51,8 @@ public class AddProductController implements Initializable {
 
     /** This method is auto-created by extending Initializable.
      * It is the first thing in this object to be called.
-     * @param url PENDING
-     * @param resourceBundle PENDING
+     * @param url Not necessary to specify.
+     * @param resourceBundle Not necessary to specify.
      */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -68,7 +71,7 @@ public class AddProductController implements Initializable {
     }
 
     /** This method takes a user provided string and searches for matching parts by name.
-     *
+     *-----------CHANGE/MOVE ME-------------
      * @param partialName This is a user-typed string.
      * @return This is a partial list of parts, containing those that meet the criteria.
      */
@@ -84,7 +87,7 @@ public class AddProductController implements Initializable {
     }
 
     /** This method takes a user provided string and searches for matching parts by ID.
-     *
+     *-----------CHANGE/MOVE ME-------------
      * @param ID This is a user-typed string.
      * @return This is a partial list of parts, containing those that meet the criteria.
      */
@@ -100,6 +103,7 @@ public class AddProductController implements Initializable {
 
     /** This method gets text the user types in the search bar and displays parts that match.
      * It calls a name search and an ID search method to check by both of those.
+     * -----------CHANGE/MOVE ME-------------
      * @param actionEvent Not necessary to specify.
      */
     public void onAddProductSearchField(ActionEvent actionEvent) {
@@ -132,29 +136,29 @@ public class AddProductController implements Initializable {
         }
     }
 
-    /** This method is
+    /** This method is called when the name text field is typed into.
      *
      * @param actionEvent Not necessary to specify.
      */
     public void onAddProdName(ActionEvent actionEvent) {
     }
 
-    /** This method is
+    /** This method is called when the inventory text field is typed into.
      *
      * @param actionEvent Not necessary to specify.
      */
     public void onAddProdInv(ActionEvent actionEvent) {
     }
 
-    /** This method is
+    /** This method is called when the ID text field is typed into.
      *
      * @param actionEvent Not necessary to specify.
      */
     public void onAddProdID(ActionEvent actionEvent) {
     }
 
-    /** This method is
-     *
+    /** This method is called when the save button is clicked. It changes the user to the main screen.
+     * It also calls methods that create the Product from the screen's text fields.
      * @param actionEvent Not necessary to specify.
      */
     public void onProdSave(ActionEvent actionEvent) throws IOException{
@@ -166,7 +170,7 @@ public class AddProductController implements Initializable {
         stage.show();
     }
 
-    /** This method is
+    /** This method is called when the cancel button is clicked. It discards typed information and changes to main screen.
      *
      * @param actionEvent Not necessary to specify.
      */
@@ -182,21 +186,21 @@ public class AddProductController implements Initializable {
         }
     }
 
-    /** This method is
+    /** This method is called when the minimum text field is typed into.
      *
      * @param actionEvent Not necessary to specify.
      */
     public void onAddProdMin(ActionEvent actionEvent) {
     }
 
-    /** This method is
+    /** This method is called when the maximum text field is typed into.
      *
      * @param actionEvent Not necessary to specify.
      */
     public void onAddProdMax(ActionEvent actionEvent) {
     }
 
-    /** This method is
+    /** This method is called when the price/cost text field is typed into.
      *
      * @param actionEvent Not necessary to specify.
      */
@@ -204,7 +208,7 @@ public class AddProductController implements Initializable {
     }
 
     /** This method is
-     *
+     * -----------CHANGE/MOVE ME-------------
      * @param actionEvent Not necessary to specify.
      */
     public void onAddProdAddAssocPart(ActionEvent actionEvent) {
@@ -218,7 +222,7 @@ public class AddProductController implements Initializable {
     }
 
     /** This method is
-     *
+     * -----------CHANGE/MOVE ME-------------
      * @param actionEvent Not necessary to specify.
      */
     public void onAddProdRemoveAssocPart(ActionEvent actionEvent) throws IOException {

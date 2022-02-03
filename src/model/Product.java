@@ -1,8 +1,10 @@
 package model;
 
-import controller.MainScreenController;
 import javafx.collections.ObservableList;
 
+/** This class pertains to products, and the methods used to view and create them.
+ *
+ */
 public class Product {
     private int id;
     private String name;
@@ -12,6 +14,16 @@ public class Product {
     private int max;
     private ObservableList<Part> associatedParts;
 
+    /** This is a constructor for a product item.
+     *
+     * @param id the product's ID
+     * @param name the product's name
+     * @param price the product's price
+     * @param stock the number of the product in stock
+     * @param min the minimum number of product allowed in stock
+     * @param max the maximum number of product allowed in stock
+     * @param associatedParts a list of parts associated with the product
+     */
     public Product(int id, String name, double price, int stock, int min, int max, ObservableList associatedParts){
         this.id = id;
         this.name = name;
@@ -66,7 +78,7 @@ public class Product {
     }
 
     /** This method gets the part inventory level.
-     * @return the stock
+     * @return the stock level
      */
     public int getStock() {
         return stock;
@@ -80,7 +92,7 @@ public class Product {
     }
 
     /** This method gets the part minimum inventory level.
-     * @return the min
+     * @return the min part inventory level
      */
     public int getMin() {
         return min;
@@ -94,7 +106,7 @@ public class Product {
     }
 
     /**  This method gets the part maximum inventory level.
-     * @return the max
+     * @return the max inventory level
      */
     public int getMax() {
         return max;
@@ -109,12 +121,27 @@ public class Product {
 
     /**  This method gets the product's associated list of parts.
      * @return the list of associated parts.
-     */
-    public ObservableList<Part> getAssociatedParts() { return associatedParts;}
 
-    /** This method sets the product's associated list of parts.
-     * @param associatedParts the list of parts.
+    public ObservableList<Part> getAllAssociatedParts() {
+        return associatedParts;
+    }
      */
-    public void setAssociatedParts(ObservableList<Part> associatedParts) {this.associatedParts = associatedParts;}
+
+    /** This method adds a part to the product's associated list of parts.
+     * @param associatedParts the part added
+
+    public void addAssociatedParts(Part part) {
+    }
+     */
+
+    /**  This method deletes a part from the product's associated list of parts.
+     *
+     * @param selectedAssociatedPart the part deleted
+     * @return returns true if completed
+
+    public boolean deleteAssociatedPart(Part selectedAssociatedPart){
+        return boolean;
+    }
+     */
 
 }

@@ -15,6 +15,9 @@ import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
+/** This class controls the modifyPart FXML screen.
+ *
+ */
 public class ModifyPartController implements Initializable {
     public RadioButton inHouseRadioMod;
     public ToggleGroup partTypeMod;
@@ -32,8 +35,8 @@ public class ModifyPartController implements Initializable {
 
     /** This method is auto-created by extending Initializable.
      * It is the first thing in this object to be called.
-     * @param url PENDING
-     * @param resourceBundle PENDING
+     * @param url Not necessary to specify.
+     * @param resourceBundle Not necessary to specify.
      */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -58,56 +61,62 @@ public class ModifyPartController implements Initializable {
         machineCompanyFieldMod.setPromptText("Enter company name");
     }
 
-    /**
+    /** This method is called when the name text field is typed into.
      *
      * @param actionEvent Not necessary to specify.
      */
     public void onNameFieldMod(ActionEvent actionEvent) {
     }
 
-    /**
+    /** This method is called when the inventory text field is typed into.
      *
      * @param actionEvent Not necessary to specify.
      */
     public void onInventoryFieldMod(ActionEvent actionEvent) {
     }
 
-    /**
+    /**  This method is called when the price/cost text field is typed into.
      *
      * @param actionEvent Not necessary to specify.
      */
     public void onPriceFieldMod(ActionEvent actionEvent) {
     }
 
-    /**
+    /** This method is called when the maximum text field is typed into.
      *
      * @param actionEvent Not necessary to specify.
      */
     public void onMaxInventoryFieldMod(ActionEvent actionEvent) {
     }
 
-    /**
+    /**  This method is called when the Machine ID/Company Name text field is typed into.
      *
      * @param actionEvent Not necessary to specify.
      */
     public void onMachineCompanyFieldMod(ActionEvent actionEvent) {
     }
 
-    /**
+    /**  This method is called when the minimum text field is typed into.
      *
      * @param actionEvent Not necessary to specify.
      */
     public void onMinInventoryFieldMod(ActionEvent actionEvent) {
     }
 
-    /**
+    /**  This method is called save button is clicked. It calls methods to save information, and switches uer to main screen.
      *
      * @param actionEvent Not necessary to specify.
      */
-    public void onSaveButtonMod(ActionEvent actionEvent) {
+    public void onSaveButtonMod(ActionEvent actionEvent) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/view/MainScreen.fxml"));
+        Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root, 800, 600);
+        stage.setTitle("Inventory Management System");
+        stage.setScene(scene);
+        stage.show();
     }
 
-    /**
+    /**  This method is called when the cancel button is clicked. It discards typed information and returns user to main screen.
      *
      * @param actionEvent Not necessary to specify.
      */
