@@ -114,11 +114,18 @@ public class Inventory {
      *
      * @param partName a string provided by user
      * @return a list of matching parts.
-
-    public static ObservableList<Part> lookupPart(String partName){
-        return ObservableList;
-    }
      */
+    public static ObservableList<Part> lookupPart(String partName){
+        ObservableList<Part> partNameList = FXCollections.observableArrayList();
+        ObservableList<Part> allParts = Inventory.getAllParts();
+        for(Part part : allParts){
+            if(part.getName().contains(partName)){
+                partNameList.add(part);
+            }
+        }
+        return partNameList;
+    }
+
 
     /** This method looks up a product by name and displays a list of matching parts.
      *

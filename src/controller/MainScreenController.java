@@ -71,21 +71,6 @@ public class MainScreenController implements Initializable {
 
     }
 
-    /** This method takes a user provided string and searches for matching parts by name.
-     *-----------CHANGE/MOVE ME-------------
-     * @param partialName This is a user-typed string.
-     * @return This is a partial list of parts, containing those that meet the criteria.
-     */
-    private ObservableList<Part> searchByPartName(String partialName){
-        ObservableList<Part> partNameList = FXCollections.observableArrayList();
-        ObservableList<Part> allParts = Inventory.getAllParts();
-        for(Part part : allParts){
-            if(part.getName().contains(partialName)){
-                partNameList.add(part);
-            }
-        }
-        return partNameList;
-    }
 
     /** This method takes a user provided string and searches for matching parts by ID.
      * -----------CHANGE/MOVE ME-------------
@@ -239,7 +224,7 @@ public class MainScreenController implements Initializable {
     public void onTypePartSearch(ActionEvent actionEvent) {
         String query = partSearchBar.getText();
 
-        ObservableList<Part> parts = searchByPartName(query);
+        ObservableList<Part> parts = Inventory.lookupPart(query);
         partsTable.setItems(parts);
         partSearchBar.setText("");
 
