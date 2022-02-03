@@ -105,14 +105,19 @@ public class Inventory {
 
     /**  This method looks up a product by ID.
      *
-     * @param ProductID the product's ID
+     * @param productID the product's ID
      * @return a product object matching the ID specified
-
-    public static Product lookupProduct(int ProductID){
-
-        return Product;
-    }
      */
+    public static Product lookupProduct(int productID){
+        ObservableList<Product> allProducts = Inventory.getAllProducts();
+        for(Product product : allProducts){
+            if (product.getId() == productID){
+                return product;
+            }
+        }
+        return null;
+    }
+
 
 
     /**  This method looks up a part by name and displays a list of matching parts.
@@ -132,15 +137,22 @@ public class Inventory {
     }
 
 
-    /** This method looks up a product by name and displays a list of matching parts.
+    /** This method looks up a product by name and displays a list of matching products.
      *
      * @param productName a string provided by user
      * @return a list of matching products.
-
-    public static ObservableList<Product> lookupPart(String productName){
-        return ObservableList;
-    }
      */
+    public static ObservableList<Product> lookupProduct(String productName){
+        ObservableList<Product> productNameList = FXCollections.observableArrayList();
+        ObservableList<Product> allProducts = Inventory.getAllProducts();
+        for(Product product : allProducts){
+            if(product.getName().contains(productName)){
+                productNameList.add(product);
+            }
+        }
+        return productNameList;
+    }
+
 
     /** This method updates a specific piece of a part's information.
      *

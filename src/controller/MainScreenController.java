@@ -72,37 +72,6 @@ public class MainScreenController implements Initializable {
     }
 
 
-    /** This method takes a user provided string and searches for matching products by name.
-     * -----------CHANGE/MOVE ME-------------
-     * @param partialName This is a user-typed string.
-     * @return This is a partial list of products, containing those that meet the criteria.
-     */
-    private ObservableList<Product> searchByProductName(String partialName){
-        ObservableList<Product> productNameList = FXCollections.observableArrayList();
-        ObservableList<Product> allProducts = Inventory.getAllProducts();
-        for(Product product : allProducts){
-            if(product.getName().contains(partialName)){
-                productNameList.add(product);
-            }
-        }
-        return productNameList;
-    }
-
-    /** This method takes a user provided string and searches for matching products by ID.
-     * -----------CHANGE/MOVE ME-------------
-     * @param ID This is a user-typed string.
-     * @return This is a partial list of products, containing those that meet the criteria.
-     */
-    private Product getProductByID(int ID){
-        ObservableList<Product> allProducts = Inventory.getAllProducts();
-        for(Product product : allProducts){
-            if (product.getId() == ID){
-                return product;
-            }
-        }
-        return null;
-    }
-
     /** This method changes user to the addPart screen.
      *
      * @param actionEvent Not necessary to specify.
@@ -244,14 +213,14 @@ public class MainScreenController implements Initializable {
     public void onTypeProductSearch(ActionEvent actionEvent) {
         String query = productSearchBar.getText();
 
-        ObservableList<Product> products = searchByProductName(query);
+        ObservableList<Product> products = Inventory.lookupProduct(query);
         productsTable.setItems(products);
         productSearchBar.setText("");
 
         if(products.isEmpty()){
             try {
                 int ID = Integer.parseInt(query);
-                Product product = getProductByID(ID);
+                Product product = Inventory.lookupProduct(ID);
                 if(product != null){
                     products.add(product);
                 }
