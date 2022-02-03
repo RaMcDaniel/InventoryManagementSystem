@@ -43,7 +43,7 @@ public class AddPartController implements Initializable {
     int max;
     String company;
     int machineID;
-    boolean inHouseToggle = true;
+    public static boolean inHouseToggle = true;
 
     /** This method is auto-created by extending Initializable.
      * It is the first thing in this object to be called.
@@ -213,12 +213,7 @@ public class AddPartController implements Initializable {
      * @param actionEvent Not necessary to specify.
      */
     public void onSaveButton(ActionEvent actionEvent) throws IOException {
-        if(inHouseToggle){
-            makeNewInHouse(ID_COUNTER, name, price, stock, min, max, machineID);
-        }
-        else{
-            makeNewOutSourced(ID_COUNTER, name, price, stock, min, max, company);
-        }
+        Inventory.addPart(ID_COUNTER, name, price, stock, min, max, machineID, company);
 
         //This resets all the class variables to for the next potential part.
         //The save button will filter by these 0s and ""s.
@@ -241,37 +236,7 @@ public class AddPartController implements Initializable {
         stage.show();
     }
 
-    /**
-     *
-     * @param id
-     * @param name
-     * @param price
-     * @param stock
-     * @param min
-     * @param max
-     * @param company
-     * @return
-     */
-    private void makeNewOutSourced(int id, String name, double price, int stock, int min, int max, String company) {
-        Outsourced newOutSourced = new Outsourced(id, name, price, stock, min, max, company);
-        Inventory.allParts.add(newOutSourced);
-    }
 
-    /**
-     *
-     * @param id
-     * @param name
-     * @param price
-     * @param stock
-     * @param min
-     * @param max
-     * @param machineID
-     * @return
-     */
-    private void makeNewInHouse(int id, String name, double price, int stock, int min, int max, int machineID) {
-        InHouse newInHouse = new InHouse(id, name, price, stock, min, max, machineID);
-        Inventory.allParts.add(newInHouse);
-    }
 
     /**
      *

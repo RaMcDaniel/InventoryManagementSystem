@@ -53,8 +53,8 @@ public class MainScreenController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         System.out.println("I am initialized");
-        partsTable.setItems(Inventory.allParts);
-        productsTable.setItems(Inventory.allProducts);
+        partsTable.setItems(Inventory.getAllParts());
+        productsTable.setItems(Inventory.getAllProducts());
 
         partIDCol.setCellValueFactory(new PropertyValueFactory<>("id"));
         partNameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
@@ -75,7 +75,7 @@ public class MainScreenController implements Initializable {
      */
     private ObservableList<Part> searchByPartName(String partialName){
         ObservableList<Part> partNameList = FXCollections.observableArrayList();
-        ObservableList<Part> allParts = Part.getAllParts();
+        ObservableList<Part> allParts = Inventory.getAllParts();
         for(Part part : allParts){
             if(part.getName().contains(partialName)){
                 partNameList.add(part);
@@ -90,7 +90,7 @@ public class MainScreenController implements Initializable {
      * @return This is a partial list of parts, containing those that meet the criteria.
      */
     private Part getPartByID(int ID){
-        ObservableList<Part> allParts = Part.getAllParts();
+        ObservableList<Part> allParts = Inventory.getAllParts();
         for(Part part : allParts){
             if (part.getId() == ID){
                 return part;
@@ -106,7 +106,7 @@ public class MainScreenController implements Initializable {
      */
     private ObservableList<Product> searchByProductName(String partialName){
         ObservableList<Product> productNameList = FXCollections.observableArrayList();
-        ObservableList<Product> allProducts = Product.getAllProducts();
+        ObservableList<Product> allProducts = Inventory.getAllProducts();
         for(Product product : allProducts){
             if(product.getName().contains(partialName)){
                 productNameList.add(product);
@@ -121,7 +121,7 @@ public class MainScreenController implements Initializable {
      * @return This is a partial list of products, containing those that meet the criteria.
      */
     private Product getProductByID(int ID){
-        ObservableList<Product> allProducts = Product.getAllProducts();
+        ObservableList<Product> allProducts = Inventory.getAllProducts();
         for(Product product : allProducts){
             if (product.getId() == ID){
                 return product;
@@ -168,10 +168,10 @@ public class MainScreenController implements Initializable {
         }
         Optional<ButtonType> result = Alerts.delete.showAndWait();
         if(result.isPresent() && result.get() == ButtonType.OK){
-            Inventory.allParts.remove(SP);
+            Inventory.getAllParts().remove(SP);
             //System.out.println(SP.getName() + " has been removed.");
         }
-        partsTable.setItems(Part.getAllParts());
+        partsTable.setItems(Inventory.getAllParts());
     }
 
     /** This method is called when Add button is clicked under the products table.
@@ -212,11 +212,11 @@ public class MainScreenController implements Initializable {
         }
         Optional<ButtonType> result = Alerts.delete.showAndWait();
         if(result.isPresent() && result.get() == ButtonType.OK){
-            Inventory.allProducts.remove(SP);
+            Inventory.getAllProducts().remove(SP);
             //System.out.println(SP.getName() + " has been removed.");
         }
 
-        productsTable.setItems(Product.getAllProducts());
+        productsTable.setItems(Inventory.getAllProducts());
     }
 
     /** This method is called when Exit button is clicked on the main screen.
@@ -248,7 +248,7 @@ public class MainScreenController implements Initializable {
               else{
                   //System.out.println("No Part containing " + query + " was found");
                   Alerts.noSuchPart.showAndWait();
-                  partsTable.setItems(Part.getAllParts());
+                  partsTable.setItems(Inventory.getAllParts());
               }
           }
           catch (NumberFormatException n){
@@ -257,7 +257,7 @@ public class MainScreenController implements Initializable {
           }
         }
         if(partSearchBar.getText() == null){
-            partsTable.setItems(Part.getAllParts());
+            partsTable.setItems(Inventory.getAllParts());
         }
     }
 
@@ -282,7 +282,7 @@ public class MainScreenController implements Initializable {
                 else{
                     //System.out.println("No Product containing " + query + " was found");
                     Alerts.noSuchProduct.showAndWait();
-                    productsTable.setItems(Product.getAllProducts());
+                    productsTable.setItems(Inventory.getAllProducts());
                 }
             }
             catch (NumberFormatException n){
@@ -291,7 +291,7 @@ public class MainScreenController implements Initializable {
             }
         }
         if(productSearchBar.getText() == null){
-            productsTable.setItems(Product.getAllProducts());
+            productsTable.setItems(Inventory.getAllProducts());
         }
     }
 }

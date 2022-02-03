@@ -12,6 +12,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import model.Alerts;
+import model.Inventory;
 import model.Part;
 
 import java.io.IOException;
@@ -42,7 +43,7 @@ public class AddProductController implements Initializable {
     public TableView addProdAssocTable;
     public TableView addProdTable;
 
-    private ObservableList<Part> allParts = Part.getAllParts();
+    private ObservableList<Part> allParts = Inventory.getAllParts();
     private ObservableList<Part> associatedParts = FXCollections.observableArrayList();
 
     /** This method is auto-created by extending Initializable.
@@ -73,7 +74,7 @@ public class AddProductController implements Initializable {
      */
     private ObservableList<Part> searchByPartName(String partialName){
         ObservableList<Part> partNameList = FXCollections.observableArrayList();
-        ObservableList<Part> allParts = Part.getAllParts();
+        ObservableList<Part> allParts = Inventory.getAllParts();
         for(Part part : allParts){
             if(part.getName().contains(partialName)){
                 partNameList.add(part);
@@ -88,7 +89,7 @@ public class AddProductController implements Initializable {
      * @return This is a partial list of parts, containing those that meet the criteria.
      */
     private Part getPartByID(int ID){
-        ObservableList<Part> allParts = Part.getAllParts();
+        ObservableList<Part> allParts = Inventory.getAllParts();
         for(Part part : allParts){
             if (part.getId() == ID){
                 return part;
@@ -118,7 +119,7 @@ public class AddProductController implements Initializable {
                 else{
                     //System.out.println("No Part containing " + query + " was found");
                     Alerts.noSuchPart.showAndWait();
-                    addProdTable.setItems(Part.getAllParts());
+                    addProdTable.setItems(Inventory.getAllParts());
                 }
             }
             catch (NumberFormatException n){
@@ -127,7 +128,7 @@ public class AddProductController implements Initializable {
             }
         }
         if(addProductSearchField.getText() == null){
-            addProdTable.setItems(Part.getAllParts());
+            addProdTable.setItems(Inventory.getAllParts());
         }
     }
 

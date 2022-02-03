@@ -117,14 +117,4 @@ public class Product {
      */
     public void setAssociatedParts(ObservableList<Part> associatedParts) {this.associatedParts = associatedParts;}
 
-
-
-
-    /** This method returns a list of all current products for use in other methods.
-     *
-     * @return an observable list of all products in the product list.
-     */
-    public static ObservableList<Product> getAllProducts() {
-        return Inventory.allProducts;
-    }
 }

@@ -110,12 +110,4 @@ public abstract class Part {
         this.max = max;
     }
 
-    /** This method returns a list of all current parts for use in other methods.
-     *
-     * @return an observable list of all parts in the part list.
-     */
-    public static ObservableList<Part> getAllParts() {
-        return Inventory.allParts;
-    }
-
 }

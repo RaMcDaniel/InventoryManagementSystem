@@ -20,7 +20,6 @@ import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-import static model.Inventory.allParts;
 
 public class ModifyProductController implements Initializable {
     public TextField modProductSearchField;
@@ -47,7 +46,7 @@ public class ModifyProductController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        modProdTable.setItems(Inventory.allParts);
+        modProdTable.setItems(Inventory.getAllParts());
         modProdIDCol.setCellValueFactory(new PropertyValueFactory<>("id"));
         modProdNameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
         modProdInvCol.setCellValueFactory(new PropertyValueFactory<>("stock"));
@@ -63,7 +62,7 @@ public class ModifyProductController implements Initializable {
      */
     private ObservableList<Part> searchByPartName(String partialName){
         ObservableList<Part> partNameList = FXCollections.observableArrayList();
-        ObservableList<Part> allParts = Part.getAllParts();
+        ObservableList<Part> allParts = Inventory.getAllParts();
         for(Part part : allParts){
             if(part.getName().contains(partialName)){
                 partNameList.add(part);
@@ -78,7 +77,7 @@ public class ModifyProductController implements Initializable {
      * @return This is a partial list of parts, containing those that meet the criteria.
      */
     private Part getPartByID(int ID){
-        ObservableList<Part> allParts = Part.getAllParts();
+        ObservableList<Part> allParts = Inventory.getAllParts();
         for(Part part : allParts){
             if (part.getId() == ID){
                 return part;
@@ -108,7 +107,7 @@ public class ModifyProductController implements Initializable {
                 else{
                     //System.out.println("No Part containing " + query + " was found");
                     Alerts.noSuchPart.showAndWait();
-                    modProdTable.setItems(Part.getAllParts());
+                    modProdTable.setItems(Inventory.getAllParts());
                 }
             }
             catch (NumberFormatException n){
@@ -117,7 +116,7 @@ public class ModifyProductController implements Initializable {
             }
         }
         if(modProductSearchField.getText() == null){
-            modProdTable.setItems(Part.getAllParts());
+            modProdTable.setItems(Inventory.getAllParts());
         }
     }
 

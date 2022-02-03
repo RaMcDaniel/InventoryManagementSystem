@@ -32,13 +32,15 @@ public class Main extends Application {
      * Do not use in production. This is only for debugging.
       */
     private void addTestData() {
-        InHouse fork = new InHouse(900, "fork", 1.99, 10, 5, 15, 7);
-        InHouse spoon = new InHouse(901, "spoon", 2.99, 10, 5, 15, 8);
-        InHouse knife = new InHouse(902, "knife", 3.99, 10, 5, 15, 9);
-        Outsourced pot = new Outsourced(903, "pot", 10.99, 3, 1, 5, "Staub");
-        Outsourced pan = new Outsourced(904, "pan", 11.99, 3, 1, 5, "Staub");
-        Outsourced kettle = new Outsourced(905, "kettle", 20.99, 3, 1, 5, "tea");
+        Inventory.makeNewInHouse(900, "fork", 1.99, 10, 5, 15, 7);
 
+        Inventory.makeNewInHouse(901, "spoon", 2.99, 10, 5, 15, 8);
+        Inventory.makeNewInHouse(902, "knife", 3.99, 10, 5, 15, 9);
+        Inventory.makeNewOutSourced(903, "pot", 10.99, 3, 1, 5, "Staub");
+        Inventory.makeNewOutSourced(904, "pan", 11.99, 3, 1, 5, "Staub");
+        Inventory.makeNewOutSourced(905, "kettle", 20.99, 3, 1, 5, "tea");
+
+        /**
         ObservableList<Part> fakePartList = FXCollections.observableArrayList();
         fakePartList.add(fork);
         fakePartList.add(spoon);
@@ -51,16 +53,7 @@ public class Main extends Application {
 
         Product silverware = new Product(1, "Starter Set", 15.99, 2, 1, 5, fakePartList);
         Product newHome = new Product(2, "New Home", 75.99, 3, 1, 5, fakePartList2);
-
-        Inventory.allParts.add(fork);
-        Inventory.allParts.add(spoon);
-        Inventory.allParts.add(pot);
-        Inventory.allParts.add(knife);
-        Inventory.allParts.add(pan);
-        Inventory.allParts.add(kettle);
-
-        Inventory.allProducts.add(silverware);
-        Inventory.allProducts.add(newHome);
+         */
 
     }
 
