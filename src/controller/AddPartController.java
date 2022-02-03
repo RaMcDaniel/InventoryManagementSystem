@@ -16,6 +16,7 @@ import model.Part;
 
 import java.io.IOException;
 import java.net.URL;
+import java.text.DecimalFormat;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -44,7 +45,7 @@ public class AddPartController implements Initializable {
     int max;
     String company;
     int machineID;
-    boolean inHouseToggle;
+    boolean inHouseToggle = true;
 
     /** This method is auto-created by extending Initializable.
      * It is the first thing in this object to be called.
@@ -82,7 +83,7 @@ public class AddPartController implements Initializable {
      */
     public void onNameField(ActionEvent actionEvent) {
         String nameEntry = nameField.getText();
-        if (!nameEntry.matches("[a-zA-Z0-9]+")) {
+        if (!nameEntry.matches("[a-zA-Z0-9 ]+")) {
             Alerts.inputError("name", "alphanumeric names").showAndWait();
             nameField.setText("");
             return;
@@ -117,6 +118,21 @@ public class AddPartController implements Initializable {
      * @param actionEvent Not necessary to specify.
      */
     public void onPriceField(ActionEvent actionEvent) {
+        String priceEntry = priceField.getText();
+        try
+        {
+            float priceFieldInt;
+            priceFieldInt = Float.parseFloat(priceEntry);
+            
+            price = priceFieldInt;
+        }
+        catch (NumberFormatException e)
+        {
+            Alerts.inputError("min inventory", "numbers").showAndWait();
+            minInventoryField.setText("");
+            return;
+        }
+        return;
     }
 
     /**
@@ -129,7 +145,7 @@ public class AddPartController implements Initializable {
         {
             int maxInventoryFieldInt;
             maxInventoryFieldInt = Integer.parseInt(maxInventoryEntry);
-            stock = maxInventoryFieldInt;
+            max = maxInventoryFieldInt;
         }
         catch (NumberFormatException e)
         {
@@ -145,6 +161,32 @@ public class AddPartController implements Initializable {
      * @param actionEvent Not necessary to specify.
      */
     public void onMachineCompanyField(ActionEvent actionEvent) {
+        if(inHouseToggle){
+            String machineIDEntry = machineCompanyField.getText();
+            try
+            {
+                int machineIDEntryInt;
+                machineIDEntryInt = Integer.parseInt(machineIDEntry);
+                machineID = machineIDEntryInt;
+            }
+            catch (NumberFormatException e)
+            {
+                Alerts.inputError("machine", "numbers").showAndWait();
+                machineCompanyField.setText("");
+                return;
+            }
+            return;
+        }
+        else{
+            String companyNameEntry = machineCompanyField.getText();
+            if (!companyNameEntry.matches("[a-zA-Z0-9 ]+")) {
+                Alerts.inputError("company name", "alphanumeric names").showAndWait();
+                machineCompanyField.setText("");
+                return;
+            }
+            company = companyNameEntry;
+            return;
+        }
     }
 
     /**
@@ -157,7 +199,7 @@ public class AddPartController implements Initializable {
         {
             int minInventoryFieldInt;
             minInventoryFieldInt = Integer.parseInt(minInventoryEntry);
-            stock = minInventoryFieldInt;
+            min = minInventoryFieldInt;
         }
         catch (NumberFormatException e)
         {
@@ -172,7 +214,7 @@ public class AddPartController implements Initializable {
      *
      * @param actionEvent Not necessary to specify.
      */
-    public void onSaveButton(ActionEvent actionEvent) {
+    public void onSaveButton(ActionEvent actionEvent) throws IOException {
         if(inHouseToggle){
             makeNewInHouse(ID_COUNTER, name, price, stock, min, max, machineID);
         }
@@ -192,6 +234,13 @@ public class AddPartController implements Initializable {
         String company = "";
         int machineID = 0;
         ID_COUNTER = ID_COUNTER + 1;
+
+        Parent root = FXMLLoader.load(getClass().getResource("/view/MainScreen.fxml"));
+        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root, 800, 600);
+        stage.setTitle("Inventory Management System");
+        stage.setScene(scene);
+        stage.show();
     }
 
     /**
