@@ -149,17 +149,10 @@ public class MainScreenController implements Initializable {
      */
     public void onDeleteProduct(ActionEvent actionEvent) {
         Product SP = (Product)productsTable.getSelectionModel().getSelectedItem();
-        if (SP==null){
-            Alerts.noneSelected.showAndWait();
-            return;
+        boolean delete = Inventory.deleteProduct(SP);
+        if(delete){
+            productsTable.setItems(Inventory.getAllProducts());
         }
-        Optional<ButtonType> result = Alerts.delete.showAndWait();
-        if(result.isPresent() && result.get() == ButtonType.OK){
-            Inventory.getAllProducts().remove(SP);
-            //System.out.println(SP.getName() + " has been removed.");
-        }
-
-        productsTable.setItems(Inventory.getAllProducts());
     }
 
     /** This method is called when Exit button is clicked on the main screen.
@@ -167,6 +160,7 @@ public class MainScreenController implements Initializable {
      * @param actionEvent Not necessary to specify.
      */
     public void onMainScreenExit(ActionEvent actionEvent) {
+
         System.exit(0);
     }
 

@@ -2,6 +2,9 @@ package model;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.ButtonType;
+
+import java.util.Optional;
 
 import static controller.AddPartController.inHouseToggle;
 
@@ -188,10 +191,18 @@ public class Inventory {
      *
      * @param selectedProduct the product to be deleted
      * @return returns true if completed
-
-    public static Boolean deleteProduct(Product selectedProduct){
-        return Boolean;
-    }
      */
+    public static boolean deleteProduct(Product selectedProduct){
+        if (selectedProduct==null){
+            Alerts.noneSelected.showAndWait();
+            return false;
+        }
+        Optional<ButtonType> result = Alerts.delete.showAndWait();
+        if(result.isPresent() && result.get() == ButtonType.OK){
+            Inventory.getAllProducts().remove(selectedProduct);
+        }
+        return true;
+    }
+
 }
 
