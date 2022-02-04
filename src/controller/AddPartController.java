@@ -128,7 +128,7 @@ public class AddPartController implements Initializable {
         catch (NumberFormatException e)
         {
             Alerts.inputError("min inventory", "numbers").showAndWait();
-            minInventoryField.setText("");
+            priceField.setText("");
             return;
         }
         return;

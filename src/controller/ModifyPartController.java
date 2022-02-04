@@ -112,6 +112,14 @@ public class ModifyPartController implements Initializable {
      * @param actionEvent Not necessary to specify.
      */
     public void onNameFieldMod(ActionEvent actionEvent) {
+        String nameEntry = nameFieldMod.getText();
+        if (!nameEntry.matches("[a-zA-Z0-9 ]+")) {
+            Alerts.inputError("name", "alphanumeric names").showAndWait();
+            nameFieldMod.setText("");
+            return;
+        }
+        modName = nameEntry;
+        return;
     }
 
     /** This method is called when the inventory text field is typed into.
@@ -119,6 +127,20 @@ public class ModifyPartController implements Initializable {
      * @param actionEvent Not necessary to specify.
      */
     public void onInventoryFieldMod(ActionEvent actionEvent) {
+        String inventoryEntry = inventoryFieldMod.getText();
+        try
+        {
+            int inventoryFieldInt;
+            inventoryFieldInt = Integer.parseInt(inventoryEntry);
+            modInventory = inventoryFieldInt;
+        }
+        catch (NumberFormatException e)
+        {
+            Alerts.inputError("inventory", "numbers").showAndWait();
+            inventoryFieldMod.setText("");
+            return;
+        }
+        return;
     }
 
     /**  This method is called when the price/cost text field is typed into.
@@ -126,6 +148,21 @@ public class ModifyPartController implements Initializable {
      * @param actionEvent Not necessary to specify.
      */
     public void onPriceFieldMod(ActionEvent actionEvent) {
+        String priceEntry = priceFieldMod.getText();
+        try
+        {
+            double priceFieldInt;
+            priceFieldInt = Double.parseDouble(priceEntry);
+
+            modPrice = priceFieldInt;
+        }
+        catch (NumberFormatException e)
+        {
+            Alerts.inputError("min inventory", "numbers").showAndWait();
+            priceFieldMod.setText("");
+            return;
+        }
+        return;
     }
 
     /** This method is called when the maximum text field is typed into.
@@ -133,6 +170,20 @@ public class ModifyPartController implements Initializable {
      * @param actionEvent Not necessary to specify.
      */
     public void onMaxInventoryFieldMod(ActionEvent actionEvent) {
+        String maxInventoryEntry = maxInventoryFieldMod.getText();
+        try
+        {
+            int maxInventoryFieldInt;
+            maxInventoryFieldInt = Integer.parseInt(maxInventoryEntry);
+            modMax = maxInventoryFieldInt;
+        }
+        catch (NumberFormatException e)
+        {
+            Alerts.inputError("max inventory", "numbers").showAndWait();
+            maxInventoryFieldMod.setText("");
+            return;
+        }
+        return;
     }
 
     /**  This method is called when the Machine ID/Company Name text field is typed into.
@@ -140,6 +191,32 @@ public class ModifyPartController implements Initializable {
      * @param actionEvent Not necessary to specify.
      */
     public void onMachineCompanyFieldMod(ActionEvent actionEvent) {
+        if(MainScreenController.passablePart instanceof InHouse){
+            String machineIDEntry = machineCompanyFieldMod.getText();
+            try
+            {
+                int machineIDEntryInt;
+                machineIDEntryInt = Integer.parseInt(machineIDEntry);
+                modMachineID = machineIDEntryInt;
+            }
+            catch (NumberFormatException e)
+            {
+                Alerts.inputError("machine", "numbers").showAndWait();
+                machineCompanyFieldMod.setText("");
+                return;
+            }
+            return;
+        }
+        if(MainScreenController.passablePart instanceof Outsourced){
+            String companyNameEntry = machineCompanyFieldMod.getText();
+            if (!companyNameEntry.matches("[a-zA-Z0-9 ]+")) {
+                Alerts.inputError("company name", "alphanumeric names").showAndWait();
+                machineCompanyFieldMod.setText("");
+                return;
+            }
+            modCompanyName = companyNameEntry;
+            return;
+        }
     }
 
     /**  This method is called when the minimum text field is typed into.
@@ -147,6 +224,20 @@ public class ModifyPartController implements Initializable {
      * @param actionEvent Not necessary to specify.
      */
     public void onMinInventoryFieldMod(ActionEvent actionEvent) {
+        String minInventoryEntry = minInventoryFieldMod.getText();
+        try
+        {
+            int minInventoryFieldInt;
+            minInventoryFieldInt = Integer.parseInt(minInventoryEntry);
+            modMin = minInventoryFieldInt;
+        }
+        catch (NumberFormatException e)
+        {
+            Alerts.inputError("min inventory", "numbers").showAndWait();
+            minInventoryFieldMod.setText("");
+            return;
+        }
+        return;
     }
 
     /**  This method is called save button is clicked. It calls methods to save information, and switches uer to main screen.
@@ -154,6 +245,28 @@ public class ModifyPartController implements Initializable {
      * @param actionEvent Not necessary to specify.
      */
     public void onSaveButtonMod(ActionEvent actionEvent) throws IOException {
+
+        if(!(modName!=null && modPrice!=0 && modInventory!=0 && modMin!=0 && modMax!=0 && (modMachineID!=0 || modCompanyName!=null))){
+            Alerts.inputError("form", "all fields must be completed. Press 'Enter' on keyboard after each to register.").showAndWait();
+            return;
+        }
+        if(!(modMin <= modInventory && modInventory <= modMax)){
+            Alerts.inventory.showAndWait();
+            return;
+        }
+
+        MainScreenController.passablePart.setName(modName);
+        MainScreenController.passablePart.setPrice(modPrice);
+        MainScreenController.passablePart.setStock(modInventory);
+        MainScreenController.passablePart.setMin(modMin);
+        MainScreenController.passablePart.setMax(modMax);
+        if(MainScreenController.passablePart instanceof InHouse){
+            ((InHouse)MainScreenController.passablePart).setMachineID(modMachineID);
+        }
+        if(MainScreenController.passablePart instanceof Outsourced){
+            ((Outsourced)MainScreenController.passablePart).setCompanyName(modCompanyName);
+        }
+
         Parent root = FXMLLoader.load(getClass().getResource("/view/MainScreen.fxml"));
         Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         Scene scene = new Scene(root, 800, 600);
