@@ -1,6 +1,5 @@
 package controller;
 
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -19,6 +18,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
+
+
 
 /** This class controls the modifyProduct FXML screen.
  *
@@ -46,8 +47,30 @@ public class ModifyProductController implements Initializable {
     public TableColumn modProdAssocInvCol;
     public TableColumn modProdAssocCostCol;
 
+    public static int prodModId;
+    public static String prodModName;
+    public static int prodModInventory;
+    public static double prodModPrice;
+    public static int prodModMin;
+    public static int prodModMax;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        prodModId = MainScreenController.passableProduct.getId();
+        modProdID.setText(Integer.toString(prodModId));
+        prodModName = MainScreenController.passableProduct.getName();
+        modProdName.setText(prodModName);
+        prodModInventory = MainScreenController.passableProduct.getStock();
+        modProdInv.setText(Integer.toString(prodModInventory));
+        prodModPrice = MainScreenController.passableProduct.getPrice();
+        modProdCost.setText(Double.toString(prodModPrice));
+        prodModMin = MainScreenController.passableProduct.getMin();
+        modProdMin.setText(Integer.toString(prodModMin));
+        prodModMax = MainScreenController.passableProduct.getMax();
+        modProdMax.setText(Integer.toString(prodModMax));
+
+
         modProdTable.setItems(Inventory.getAllParts());
         modProdIDCol.setCellValueFactory(new PropertyValueFactory<>("id"));
         modProdNameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
@@ -57,37 +80,6 @@ public class ModifyProductController implements Initializable {
     }
 
 
-    /** This method takes a user provided string and searches for matching parts by name.
-     * -----------CHANGE/MOVE ME-------------
-     * @param partialName This is a user-typed string.
-     * @return This is a partial list of parts, containing those that meet the criteria.
-     */
-    private ObservableList<Part> searchByPartName(String partialName){
-        ObservableList<Part> partNameList = FXCollections.observableArrayList();
-        ObservableList<Part> allParts = Inventory.getAllParts();
-        for(Part part : allParts){
-            if(part.getName().contains(partialName)){
-                partNameList.add(part);
-            }
-        }
-        return partNameList;
-    }
-
-    /** This method takes a user provided string and searches for matching parts by ID.
-     *-----------CHANGE/MOVE ME-------------
-     * @param ID This is a user-typed string.
-     * @return This is a partial list of parts, containing those that meet the criteria.
-     */
-    private Part getPartByID(int ID){
-        ObservableList<Part> allParts = Inventory.getAllParts();
-        for(Part part : allParts){
-            if (part.getId() == ID){
-                return part;
-            }
-        }
-        return null;
-    }
-
     /** This method gets text the user types in the search bar and displays parts that match.
      * It calls a name search and an ID search method to check by both of those.
      * -----------CHANGE/MOVE ME-------------
@@ -96,14 +88,14 @@ public class ModifyProductController implements Initializable {
     public void onModProductSearchField(ActionEvent actionEvent) {
         String query = modProductSearchField.getText();
 
-        ObservableList<Part> parts = searchByPartName(query);
+        ObservableList<Part> parts = Inventory.lookupPart(query);
         modProdTable.setItems(parts);
         modProductSearchField.setText("");
 
         if(parts.isEmpty()){
             try {
                 int ID = Integer.parseInt(query);
-                Part part = getPartByID(ID);
+                Part part = Inventory.lookupPart(ID);
                 if(part != null){
                     parts.add(part);
                 }
@@ -128,6 +120,14 @@ public class ModifyProductController implements Initializable {
      * @param actionEvent Not necessary to specify.
      */
     public void onModProdName(ActionEvent actionEvent) {
+        String nameEntry = modProdName.getText();
+        if (!nameEntry.matches("[a-zA-Z0-9 ]+")) {
+            Alerts.inputError("name", "alphanumeric names").showAndWait();
+            modProdName.setText("");
+            return;
+        }
+        prodModName = nameEntry;
+        return;
     }
 
     /** This method is called when the inventory text field is typed into.
@@ -135,14 +135,22 @@ public class ModifyProductController implements Initializable {
      * @param actionEvent Not necessary to specify.
      */
     public void onModProdInv(ActionEvent actionEvent) {
+        String inventoryEntry = modProdInv.getText();
+        try
+        {
+            int inventoryFieldInt;
+            inventoryFieldInt = Integer.parseInt(inventoryEntry);
+            prodModInventory = inventoryFieldInt;
+        }
+        catch (NumberFormatException e)
+        {
+            Alerts.inputError("inventory", "numbers").showAndWait();
+            modProdInv.setText("");
+            return;
+        }
+        return;
     }
 
-    /** This method is called when the ID field is typed into.
-     *
-     * @param actionEvent Not necessary to specify.
-     */
-    public void onModProdID(ActionEvent actionEvent) {
-    }
 
     /** This method calls methods to save products, and switches the user to the main screen.
      *
@@ -180,6 +188,20 @@ public class ModifyProductController implements Initializable {
      * @param actionEvent Not necessary to specify.
      */
     public void onModProdMin(ActionEvent actionEvent) {
+        String minInventoryEntry = modProdMin.getText();
+        try
+        {
+            int minInventoryFieldInt;
+            minInventoryFieldInt = Integer.parseInt(minInventoryEntry);
+            prodModMin = minInventoryFieldInt;
+        }
+        catch (NumberFormatException e)
+        {
+            Alerts.inputError("min inventory", "numbers").showAndWait();
+            modProdMin.setText("");
+            return;
+        }
+        return;
     }
 
     /** This method is called when the maximum field is typed into.
@@ -187,6 +209,20 @@ public class ModifyProductController implements Initializable {
      * @param actionEvent Not necessary to specify.
      */
     public void onModProdMax(ActionEvent actionEvent) {
+        String maxInventoryEntry = modProdMax.getText();
+        try
+        {
+            int maxInventoryFieldInt;
+            maxInventoryFieldInt = Integer.parseInt(maxInventoryEntry);
+            prodModMax = maxInventoryFieldInt;
+        }
+        catch (NumberFormatException e)
+        {
+            Alerts.inputError("max inventory", "numbers").showAndWait();
+            modProdMax.setText("");
+            return;
+        }
+        return;
     }
 
     /** This method is called when the price/cost field is typed into.
@@ -194,6 +230,21 @@ public class ModifyProductController implements Initializable {
      * @param actionEvent Not necessary to specify.
      */
     public void onModProdCost(ActionEvent actionEvent) {
+        String priceEntry = modProdCost.getText();
+        try
+        {
+            double priceFieldInt;
+            priceFieldInt = Double.parseDouble(priceEntry);
+
+            prodModPrice = priceFieldInt;
+        }
+        catch (NumberFormatException e)
+        {
+            Alerts.inputError("min inventory", "numbers").showAndWait();
+            modProdCost.setText("");
+            return;
+        }
+        return;
     }
 
     /** This method is called when the add associated part button is clicked.

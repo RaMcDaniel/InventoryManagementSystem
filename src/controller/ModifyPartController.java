@@ -11,7 +11,6 @@ import javafx.stage.Stage;
 import model.*;
 
 import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -55,7 +54,6 @@ public class ModifyPartController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle){
-        //Part modPart = MainScreenController.passablePart;
 
         modId = MainScreenController.passablePart.getId();
         partIDMod.setText(Integer.toString(modId));

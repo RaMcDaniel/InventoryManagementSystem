@@ -138,7 +138,6 @@ public class MainScreenController implements Initializable {
      * @param actionEvent Not necessary to specify.
      */
     public void onModifyProduct(ActionEvent actionEvent) throws IOException {
-
         Product SP = (Product)productsTable.getSelectionModel().getSelectedItem();
 
         if(SP != null){

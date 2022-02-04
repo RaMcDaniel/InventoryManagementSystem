@@ -1,6 +1,6 @@
 package controller;
 
-import javafx.collections.FXCollections;
+
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -9,7 +9,6 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import model.Alerts;
 import model.Inventory;
@@ -46,6 +45,12 @@ public class AddProductController implements Initializable {
     public TableView addProdAssocTable;
     public TableView addProdTable;
 
+    String name;
+    double price;
+    int stock;
+    int min;
+    int max;
+
     private ObservableList<Part> allParts = Inventory.getAllParts();
     //private ObservableList<Part> associatedParts = Product.getAllAssociatedParts();
 
@@ -56,6 +61,8 @@ public class AddProductController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        /**
         addProdTable.setItems(allParts);
         addProdIDCol.setCellValueFactory(new PropertyValueFactory<>("id"));
         addProdNameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
@@ -67,9 +74,9 @@ public class AddProductController implements Initializable {
         addProdAssocNameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
         addProdAssocInvCol.setCellValueFactory(new PropertyValueFactory<>("stock"));
         addProdAssocCostCol.setCellValueFactory(new PropertyValueFactory<>("price"));
-
+        */
     }
-    
+
 
     /** This method gets text the user types in the search bar and displays parts that match.
      * It calls a name search and an ID search method to check by both of those.
@@ -109,6 +116,14 @@ public class AddProductController implements Initializable {
      * @param actionEvent Not necessary to specify.
      */
     public void onAddProdName(ActionEvent actionEvent) {
+        String nameEntry = addProdName.getText();
+        if (!nameEntry.matches("[a-zA-Z0-9 ]+")) {
+            Alerts.inputError("name", "alphanumeric names").showAndWait();
+            addProdName.setText("");
+            return;
+        }
+        name = nameEntry;
+        return;
     }
 
     /** This method is called when the inventory text field is typed into.
@@ -116,14 +131,22 @@ public class AddProductController implements Initializable {
      * @param actionEvent Not necessary to specify.
      */
     public void onAddProdInv(ActionEvent actionEvent) {
+        String inventoryEntry = addProdInv.getText();
+        try
+        {
+            int inventoryFieldInt;
+            inventoryFieldInt = Integer.parseInt(inventoryEntry);
+            stock = inventoryFieldInt;
+        }
+        catch (NumberFormatException e)
+        {
+            Alerts.inputError("inventory", "numbers").showAndWait();
+            addProdInv.setText("");
+            return;
+        }
+        return;
     }
 
-    /** This method is called when the ID text field is typed into.
-     *
-     * @param actionEvent Not necessary to specify.
-     */
-    public void onAddProdID(ActionEvent actionEvent) {
-    }
 
     /** This method is called when the save button is clicked. It changes the user to the main screen.
      * It also calls methods that create the Product from the screen's text fields.
@@ -159,6 +182,20 @@ public class AddProductController implements Initializable {
      * @param actionEvent Not necessary to specify.
      */
     public void onAddProdMin(ActionEvent actionEvent) {
+        String minInventoryEntry = addProdMin.getText();
+        try
+        {
+            int minInventoryFieldInt;
+            minInventoryFieldInt = Integer.parseInt(minInventoryEntry);
+            min = minInventoryFieldInt;
+        }
+        catch (NumberFormatException e)
+        {
+            Alerts.inputError("min inventory", "numbers").showAndWait();
+            addProdMin.setText("");
+            return;
+        }
+        return;
     }
 
     /** This method is called when the maximum text field is typed into.
@@ -166,6 +203,20 @@ public class AddProductController implements Initializable {
      * @param actionEvent Not necessary to specify.
      */
     public void onAddProdMax(ActionEvent actionEvent) {
+        String maxInventoryEntry = addProdMax.getText();
+        try
+        {
+            int maxInventoryFieldInt;
+            maxInventoryFieldInt = Integer.parseInt(maxInventoryEntry);
+            max = maxInventoryFieldInt;
+        }
+        catch (NumberFormatException e)
+        {
+            Alerts.inputError("max inventory", "numbers").showAndWait();
+            addProdMax.setText("");
+            return;
+        }
+        return;
     }
 
     /** This method is called when the price/cost text field is typed into.
@@ -173,6 +224,21 @@ public class AddProductController implements Initializable {
      * @param actionEvent Not necessary to specify.
      */
     public void onAddProdCost(ActionEvent actionEvent) {
+        String priceEntry = addProdCost.getText();
+        try
+        {
+            double priceFieldInt;
+            priceFieldInt = Double.parseDouble(priceEntry);
+
+            price = priceFieldInt;
+        }
+        catch (NumberFormatException e)
+        {
+            Alerts.inputError("min inventory", "numbers").showAndWait();
+            addProdCost.setText("");
+            return;
+        }
+        return;
     }
 
     /** This method is
