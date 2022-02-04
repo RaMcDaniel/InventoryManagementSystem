@@ -214,19 +214,17 @@ public class AddPartController implements Initializable {
      * @param actionEvent Not necessary to specify.
      */
     public void onSaveButton(ActionEvent actionEvent) throws IOException {
+
+        if(!(name!=null && price!=0 && stock!=0 && min!=0 && max!=0 && (machineID!=0 || company!=null))){
+            Alerts.inputError("form", "all fields must be completed. Press 'Enter' on keyboard after each to register.").showAndWait();
+            return;
+        }
+        if(!(min <= stock && stock <= max)){
+            Alerts.inventory.showAndWait();
+            return;
+        }
         Inventory.addPart(ID_COUNTER, name, price, stock, min, max, machineID, company);
 
-        //This resets all the class variables to for the next potential part.
-        //The save button will filter by these 0s and ""s.
-        //If they exist, save will not be allowed.
-        int id = 0;
-        String name = "";
-        double price = 0;
-        int stock = 0;
-        int min = 0;
-        int max = 0;
-        String company = "";
-        int machineID = 0;
         ID_COUNTER = ID_COUNTER + 1;
 
         Parent root = FXMLLoader.load(getClass().getResource("/view/MainScreen.fxml"));

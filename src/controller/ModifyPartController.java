@@ -48,8 +48,6 @@ public class ModifyPartController implements Initializable {
     public static String modCompanyName;
 
 
-
-
     /** This method is auto-created by extending Initializable.
      * It is the first thing in this object to be called.
      * @param url Not necessary to specify.
@@ -57,41 +55,31 @@ public class ModifyPartController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle){
-        Part modPart = MainScreenController.passablePart;
+        //Part modPart = MainScreenController.passablePart;
 
-        if(modPart instanceof InHouse){
+        modId = MainScreenController.passablePart.getId();
+        partIDMod.setText(Integer.toString(modId));
+        modName = MainScreenController.passablePart.getName();
+        nameFieldMod.setText(modName);
+        modInventory = MainScreenController.passablePart.getStock();
+        inventoryFieldMod.setText(Integer.toString(modInventory));
+        modPrice = MainScreenController.passablePart.getPrice();
+        priceFieldMod.setText(Double.toString(modPrice));
+        modMin = MainScreenController.passablePart.getMin();
+        minInventoryFieldMod.setText(Integer.toString(modMin));
+        modMax = MainScreenController.passablePart.getMax();
+        maxInventoryFieldMod.setText(Integer.toString(modMax));
+
+
+        if(MainScreenController.passablePart instanceof InHouse){
             inHouseRadioMod.setSelected(true);
-            modId = modPart.getId();
-            partIDMod.setText(Integer.toString(modId));
-            modName = modPart.getName();
-            nameFieldMod.setText(modName);
-            modInventory = modPart.getStock();
-            inventoryFieldMod.setText(Integer.toString(modInventory));
-            modPrice = modPart.getPrice();
-            priceFieldMod.setText(Double.toString(modPrice));
-            modMin = modPart.getMin();
-            minInventoryFieldMod.setText(Integer.toString(modMin));
-            modMax = modPart.getMax();
-            maxInventoryFieldMod.setText(Integer.toString(modMax));
-            modMachineID = ((InHouse)modPart).getMachineID();
+            modMachineID = ((InHouse)MainScreenController.passablePart).getMachineID();
             machineCompanyFieldMod.setText(Integer.toString(modMachineID));
             machineCompanyLabelMod.setText("Machine ID");
         }
-        if(modPart instanceof Outsourced){
+        if(MainScreenController.passablePart instanceof Outsourced){
             outsourcedRadioMod.setSelected(true);
-            modId = modPart.getId();
-            partIDMod.setText(Integer.toString(modId));
-            modName = modPart.getName();
-            nameFieldMod.setText(modName);
-            modInventory = modPart.getStock();
-            inventoryFieldMod.setText(Integer.toString(modInventory));
-            modPrice = modPart.getPrice();
-            priceFieldMod.setText(Double.toString(modPrice));
-            modMin = modPart.getMin();
-            minInventoryFieldMod.setText(Integer.toString(modMin));
-            modMax = modPart.getMax();
-            maxInventoryFieldMod.setText(Integer.toString(modMax));
-            modCompanyName = ((Outsourced)modPart).getCompanyName();
+            modCompanyName = ((Outsourced)MainScreenController.passablePart).getCompanyName();
             machineCompanyFieldMod.setText(modCompanyName);
             machineCompanyLabelMod.setText("Company Name");
         }

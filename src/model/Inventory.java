@@ -156,19 +156,21 @@ public class Inventory {
      *
      * @param index which position in part's parameter list is being updated
      * @param selectedPart The part being updated
-     */
+
     public static void updatePart(int index, Part selectedPart){
 
+            WHAT THE HELL IS THIS FOR???
     }
+    */
 
 
     /**  This method updates a specific piece of a product's information.
      *
      * @param index  which position in product's parameter list is being updated
-     * @param selectedProduct the product being updated
+     * @param newProduct the product being updated
 
-    public static void updateProduct(int index, Product selectedProduct){
-
+    public static void updateProduct(int index, Product newProduct){
+                        WHAT THE HELL IS THIS FOR???
     }
      */
 
