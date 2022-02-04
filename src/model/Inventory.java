@@ -47,7 +47,7 @@ public class Inventory {
     /** This is a generic method to add a part.
      * It calls methods for adding in-house or outsourced parts depending on the toggle on the add part page.
      */
-    public static void addPart(int ID_COUNTER, String name, float price, int stock, int min, int max, int machineID, String company){
+    public static void addPart(int ID_COUNTER, String name, double price, int stock, int min, int max, int machineID, String company){
         if(inHouseToggle){
             makeNewInHouse(ID_COUNTER, name, price, stock, min, max, machineID);
         }
@@ -156,11 +156,11 @@ public class Inventory {
      *
      * @param index which position in part's parameter list is being updated
      * @param selectedPart The part being updated
-
+     */
     public static void updatePart(int index, Part selectedPart){
 
     }
-     */
+
 
     /**  This method updates a specific piece of a product's information.
      *

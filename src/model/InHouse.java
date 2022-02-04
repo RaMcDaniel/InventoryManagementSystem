@@ -26,19 +26,19 @@ public class InHouse extends Part{
     /** This sets the machine ID when creating a new part.
      *
      * @param machineID the ID of the machine the part was created on
-
-    public void setMachineID(int machineID){
-
-    }
      */
+    public void setMachineID(int machineID){
+        this.machineID = machineID;
+    }
+
 
     /** This returns the machine ID of the selected part.
      *
      * @return machine ID
-
+     */
     public int getMachineID(){
         return machineID;
     }
-     */
+
 
 }

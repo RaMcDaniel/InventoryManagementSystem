@@ -38,7 +38,7 @@ public class AddPartController implements Initializable {
     public Label machineCompanyLabel;
     int id;
     String name;
-    float price;
+    double price;
     int stock;
     int min;
     int max;
@@ -112,7 +112,7 @@ public class AddPartController implements Initializable {
         return;
     }
 
-    /**  When something is typed in this field, it is validated for float characters and saved if valid.
+    /**  When something is typed in this field, it is validated for double characters and saved if valid.
      *
      * @param actionEvent Not necessary to specify.
      */
@@ -120,8 +120,8 @@ public class AddPartController implements Initializable {
         String priceEntry = priceField.getText();
         try
         {
-            float priceFieldInt;
-            priceFieldInt = Float.parseFloat(priceEntry);
+            double priceFieldInt;
+            priceFieldInt = Double.parseDouble(priceEntry);
 
             price = priceFieldInt;
         }
@@ -221,7 +221,7 @@ public class AddPartController implements Initializable {
         //If they exist, save will not be allowed.
         int id = 0;
         String name = "";
-        float price = 0;
+        double price = 0;
         int stock = 0;
         int min = 0;
         int max = 0;

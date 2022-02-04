@@ -5,7 +5,7 @@ package model;
  */
 public class Outsourced extends Part{
 
-    private String company;
+    private String companyName;
 
     /** This is the constructor for outsourced parts.
      *
@@ -20,26 +20,25 @@ public class Outsourced extends Part{
     public Outsourced(int id, String name, double price, int stock, int min, int max, String companyName) {
         super(id, name, price, stock, min, max);
 
-        this.company = companyName;
+        this.companyName = companyName;
     }
 
 
     /** This sets the name of the company when creating a new part.
      *
      * @param companyName the name of the company the part was purchased from.
-
-    public void setCompanyName(string companyName){
-
-    }
      */
+    public void setCompanyName(String companyName){
+        this.companyName = companyName;
+    }
+
 
     /** This returns the company name of the selected part.
      *
      * @return company name
-
+     */
     public String getCompanyName(){
     return companyName;
     }
-     */
 
 }

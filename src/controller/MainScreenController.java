@@ -10,10 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-import model.Inventory;
-import model.Part;
-import model.Alerts;
-import model.Product;
+import model.*;
 
 import java.io.IOException;
 import java.net.URL;
@@ -42,6 +39,11 @@ public class MainScreenController implements Initializable {
     public Button mainScreenExit;
     public TextField partSearchBar;
     public TextField productSearchBar;
+
+
+    public static InHouse passableInHouse;
+    public static Outsourced passableOutsourced;
+    public static Product passableProduct;
 
 
 
@@ -88,12 +90,21 @@ public class MainScreenController implements Initializable {
      * @param actionEvent Not necessary to specify.
      */
     public void onModifyPart(ActionEvent actionEvent) throws IOException{
+        Part SP = (Part)partsTable.getSelectionModel().getSelectedItem();
+
         Parent root = FXMLLoader.load(getClass().getResource("/view/ModifyPart.fxml"));
         Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         Scene scene = new Scene(root, 600, 400);
         stage.setTitle("Modify Part");
         stage.setScene(scene);
         stage.show();
+
+        if(SP instanceof InHouse){
+            passableInHouse = (InHouse)SP;
+        }
+        else{
+            passableOutsourced = (Outsourced)SP;
+        }
     }
 
     /** This method is called when Delete button is clicked under the parts table.
