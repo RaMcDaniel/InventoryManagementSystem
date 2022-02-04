@@ -14,7 +14,6 @@ import javafx.stage.Stage;
 import model.Alerts;
 import model.Inventory;
 import model.Part;
-import model.Product;
 
 import java.io.IOException;
 import java.net.URL;
@@ -70,37 +69,7 @@ public class AddProductController implements Initializable {
         addProdAssocCostCol.setCellValueFactory(new PropertyValueFactory<>("price"));
 
     }
-
-    /** This method takes a user provided string and searches for matching parts by name.
-     *-----------CHANGE/MOVE ME-------------
-     * @param partialName This is a user-typed string.
-     * @return This is a partial list of parts, containing those that meet the criteria.
-     */
-    private ObservableList<Part> searchByPartName(String partialName){
-        ObservableList<Part> partNameList = FXCollections.observableArrayList();
-        ObservableList<Part> allParts = Inventory.getAllParts();
-        for(Part part : allParts){
-            if(part.getName().contains(partialName)){
-                partNameList.add(part);
-            }
-        }
-        return partNameList;
-    }
-
-    /** This method takes a user provided string and searches for matching parts by ID.
-     *-----------CHANGE/MOVE ME-------------
-     * @param ID This is a user-typed string.
-     * @return This is a partial list of parts, containing those that meet the criteria.
-     */
-    private Part getPartByID(int ID){
-        ObservableList<Part> allParts = Inventory.getAllParts();
-        for(Part part : allParts){
-            if (part.getId() == ID){
-                return part;
-            }
-        }
-        return null;
-    }
+    
 
     /** This method gets text the user types in the search bar and displays parts that match.
      * It calls a name search and an ID search method to check by both of those.
@@ -110,25 +79,23 @@ public class AddProductController implements Initializable {
     public void onAddProductSearchField(ActionEvent actionEvent) {
         String query = addProductSearchField.getText();
 
-        ObservableList<Part> parts = searchByPartName(query);
+        ObservableList<Part> parts = Inventory.lookupPart(query);
         addProdTable.setItems(parts);
         addProductSearchField.setText("");
 
         if(parts.isEmpty()){
             try {
                 int ID = Integer.parseInt(query);
-                Part part = getPartByID(ID);
+                Part part = Inventory.lookupPart(ID);
                 if(part != null){
                     parts.add(part);
                 }
                 else{
-                    //System.out.println("No Part containing " + query + " was found");
                     Alerts.noSuchPart.showAndWait();
                     addProdTable.setItems(Inventory.getAllParts());
                 }
             }
             catch (NumberFormatException n){
-                //System.out.println("No Part containing " + query + " was found");
                 Alerts.noSuchPart.showAndWait();
             }
         }

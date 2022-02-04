@@ -149,7 +149,6 @@ public class MainScreenController implements Initializable {
             return;
         }
 
-
         Parent root = FXMLLoader.load(getClass().getResource("/view/ModifyProduct.fxml"));
         Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         Scene scene = new Scene(root, 800, 600);
@@ -199,13 +198,11 @@ public class MainScreenController implements Initializable {
                   parts.add(part);
               }
               else{
-                  //System.out.println("No Part containing " + query + " was found");
                   Alerts.noSuchPart.showAndWait();
                   partsTable.setItems(Inventory.getAllParts());
               }
           }
           catch (NumberFormatException n){
-              //System.out.println("No Part containing " + query + " was found");
               Alerts.noSuchPart.showAndWait();
           }
         }
