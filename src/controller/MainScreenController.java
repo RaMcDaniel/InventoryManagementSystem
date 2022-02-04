@@ -92,6 +92,18 @@ public class MainScreenController implements Initializable {
     public void onModifyPart(ActionEvent actionEvent) throws IOException{
         Part SP = (Part)partsTable.getSelectionModel().getSelectedItem();
 
+        if(SP != null){
+            if(SP instanceof InHouse){
+                passableInHouse = (InHouse)SP;
+            }
+            else{
+                passableOutsourced = (Outsourced)SP;
+            }
+        }
+        else{
+            Alerts.noneSelected.showAndWait();
+            return;
+        }
         Parent root = FXMLLoader.load(getClass().getResource("/view/ModifyPart.fxml"));
         Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         Scene scene = new Scene(root, 600, 400);
@@ -99,12 +111,6 @@ public class MainScreenController implements Initializable {
         stage.setScene(scene);
         stage.show();
 
-        if(SP instanceof InHouse){
-            passableInHouse = (InHouse)SP;
-        }
-        else{
-            passableOutsourced = (Outsourced)SP;
-        }
     }
 
     /** This method is called when Delete button is clicked under the parts table.

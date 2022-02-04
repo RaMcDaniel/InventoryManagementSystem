@@ -8,11 +8,10 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
-import model.Alerts;
-import model.Inventory;
-import model.Part;
+import model.*;
 
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -40,14 +39,14 @@ public class ModifyPartController implements Initializable {
     public Label machineCompanyLabelMod;
     public static boolean inHouseToggle = true;
 
-    int id;
-    String name;
-    int inventory;
-    double price;
-    int min;
-    int max;
-    int machineID;
-    String companyName;
+    public static int modId;
+    public static String modName;
+    public static int modInventory;
+    public static double modPrice;
+    public static int modMin;
+    public static int modMax;
+    public static int modMachineID;
+    public static String modCompanyName;
 
 
 
@@ -58,17 +57,13 @@ public class ModifyPartController implements Initializable {
      * @param resourceBundle Not necessary to specify.
      */
     @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
+    public void initialize(URL url, ResourceBundle resourceBundle){
         inHouseToggle = true;
-        int modId;
-        String modName;
-        int modInventory;
-        double modPrice;
-        int modMin;
-        int modMax;
-        int modMachineID;
-        String modCompanyName;
+        InHouse modInHouse = MainScreenController.passableInHouse;
+        Outsourced modOutsourced = MainScreenController.passableOutsourced;
+        modId = modInHouse.getId();
 
+        /**
         if(inHouseToggle){
             modId = passableInHouse.getId();
             modName = passableInHouse.getName();
@@ -86,7 +81,7 @@ public class ModifyPartController implements Initializable {
             modMin = passableOutsourced.getMin();
             modMax = passableOutsourced.getMax();
             modCompanyName = passableOutsourced.getCompanyName();
-        }
+        }*/
 
     }
 
