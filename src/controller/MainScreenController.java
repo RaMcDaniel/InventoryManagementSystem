@@ -94,14 +94,16 @@ public class MainScreenController implements Initializable {
 
         if(SP != null){
             if(SP instanceof InHouse){
+                AddPartController.inHouseToggle = true;
                 passableInHouse = (InHouse)SP;
             }
-            else{
+            if(SP instanceof Outsourced){
+                AddPartController.inHouseToggle = false;
                 passableOutsourced = (Outsourced)SP;
             }
         }
         else{
-            Alerts.noneSelected.showAndWait();
+            Alerts.noModSelected.showAndWait();
             return;
         }
         Parent root = FXMLLoader.load(getClass().getResource("/view/ModifyPart.fxml"));

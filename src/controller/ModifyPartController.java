@@ -16,6 +16,7 @@ import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
+import static controller.AddPartController.inHouseToggle;
 import static controller.MainScreenController.passableInHouse;
 import static controller.MainScreenController.passableOutsourced;
 
@@ -37,7 +38,6 @@ public class ModifyPartController implements Initializable {
     public Button saveButtonMod;
     public Button cancelButtonMod;
     public Label machineCompanyLabelMod;
-    public static boolean inHouseToggle = true;
 
     public static int modId;
     public static String modName;
@@ -58,30 +58,29 @@ public class ModifyPartController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle){
-        inHouseToggle = true;
         InHouse modInHouse = MainScreenController.passableInHouse;
         Outsourced modOutsourced = MainScreenController.passableOutsourced;
-        modId = modInHouse.getId();
 
-        /**
-        if(inHouseToggle){
-            modId = passableInHouse.getId();
-            modName = passableInHouse.getName();
-            modInventory = passableInHouse.getStock();
-            modPrice = passableInHouse.getPrice();
-            modMin = passableInHouse.getMin();
-            modMax = passableInHouse.getMax();
-            modMachineID = passableInHouse.getMachineID();
+
+        if(MainScreenController.on){
+            modId = modInHouse.getId();
+            partIDMod.setText(Integer.toString(modId));
+            modName = modInHouse.getName();
+            modInventory = modInHouse.getStock();
+            modPrice = modInHouse.getPrice();
+            modMin = modInHouse.getMin();
+            modMax = modInHouse.getMax();
+            modMachineID = modInHouse.getMachineID();
         }
         if(!inHouseToggle) {
-            modId = passableOutsourced.getId();
-            modName = passableOutsourced.getName();
-            modInventory = passableOutsourced.getStock();
-            modPrice = passableOutsourced.getPrice();
-            modMin = passableOutsourced.getMin();
-            modMax = passableOutsourced.getMax();
-            modCompanyName = passableOutsourced.getCompanyName();
-        }*/
+            modId = modOutsourced.getId();
+            modName = modOutsourced.getName();
+            modInventory = modOutsourced.getStock();
+            modPrice = modOutsourced.getPrice();
+            modMin = modOutsourced.getMin();
+            modMax = modOutsourced.getMax();
+            modCompanyName = modOutsourced.getCompanyName();
+        }
 
     }
 

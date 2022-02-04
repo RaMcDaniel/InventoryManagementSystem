@@ -15,6 +15,7 @@ public class Alerts {
     public static Alert delete = new Alert(Alert.AlertType.CONFIRMATION, "This will delete selection. Would you like to delete and continue?");
     public static Alert remove = new Alert(Alert.AlertType.CONFIRMATION, "This will remove selection. Would you like to remove and continue?");
     public static Alert noneSelected = new Alert(Alert.AlertType.ERROR, "No selection is highlighted. Nothing was deleted.");
+    public static Alert noModSelected = new Alert(Alert.AlertType.ERROR, "No selection is highlighted. Highlight a part to modify.");
 
     /** This is a general purpose alert creator. A popup box appears telling the user how to correct their input.
      * It can be generalized to any field in the program.
