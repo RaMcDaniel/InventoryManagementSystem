@@ -138,6 +138,18 @@ public class MainScreenController implements Initializable {
      * @param actionEvent Not necessary to specify.
      */
     public void onModifyProduct(ActionEvent actionEvent) throws IOException {
+
+        Product SP = (Product)productsTable.getSelectionModel().getSelectedItem();
+
+        if(SP != null){
+            passableProduct = SP;
+        }
+        else{
+            Alerts.noModSelected.showAndWait();
+            return;
+        }
+
+
         Parent root = FXMLLoader.load(getClass().getResource("/view/ModifyProduct.fxml"));
         Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         Scene scene = new Scene(root, 800, 600);
