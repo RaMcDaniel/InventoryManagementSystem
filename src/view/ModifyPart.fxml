@@ -29,7 +29,7 @@
                 </StackPane>
                 <StackPane prefHeight="52.0" prefWidth="382.0" GridPane.columnIndex="1">
                     <children>
-                        <RadioButton fx:id="inHouseRadioMod" mnemonicParsing="false" onAction="#onInHouseRadioMod" selected="true" text="In-House" StackPane.alignment="CENTER_LEFT">
+                        <RadioButton fx:id="inHouseRadioMod" disable="true" mnemonicParsing="false" onAction="#onInHouseRadioMod" text="In-House" StackPane.alignment="CENTER_LEFT">
                             <StackPane.margin>
                                 <Insets left="70.0" />
                             </StackPane.margin>
@@ -37,7 +37,7 @@
                         <ToggleGroup fx:id="partTypeMod" />
                      </toggleGroup>
                         </RadioButton>
-                        <RadioButton fx:id="outsourcedRadioMod" mnemonicParsing="false" onAction="#onOutsourcedRadioMod" text="Outsourced" toggleGroup="$partTypeMod" StackPane.alignment="CENTER_RIGHT">
+                        <RadioButton fx:id="outsourcedRadioMod" disable="true" mnemonicParsing="false" onAction="#onOutsourcedRadioMod" text="Outsourced" toggleGroup="$partTypeMod" StackPane.alignment="CENTER_RIGHT">
                             <StackPane.margin>
                                 <Insets right="70.0" />
                             </StackPane.margin>

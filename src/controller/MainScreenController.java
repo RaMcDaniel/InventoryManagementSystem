@@ -41,8 +41,7 @@ public class MainScreenController implements Initializable {
     public TextField productSearchBar;
 
 
-    public static InHouse passableInHouse;
-    public static Outsourced passableOutsourced;
+    public static Part passablePart;
     public static Product passableProduct;
 
 
@@ -93,14 +92,7 @@ public class MainScreenController implements Initializable {
         Part SP = (Part)partsTable.getSelectionModel().getSelectedItem();
 
         if(SP != null){
-            if(SP instanceof InHouse){
-                AddPartController.inHouseToggle = true;
-                passableInHouse = (InHouse)SP;
-            }
-            if(SP instanceof Outsourced){
-                AddPartController.inHouseToggle = false;
-                passableOutsourced = (Outsourced)SP;
-            }
+            passablePart = SP;
         }
         else{
             Alerts.noModSelected.showAndWait();

@@ -17,8 +17,7 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 
 import static controller.AddPartController.inHouseToggle;
-import static controller.MainScreenController.passableInHouse;
-import static controller.MainScreenController.passableOutsourced;
+
 
 
 /** This class controls the modifyPart FXML screen.
@@ -58,28 +57,43 @@ public class ModifyPartController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle){
-        InHouse modInHouse = MainScreenController.passableInHouse;
-        Outsourced modOutsourced = MainScreenController.passableOutsourced;
+        Part modPart = MainScreenController.passablePart;
 
-
-        if(MainScreenController.on){
-            modId = modInHouse.getId();
+        if(modPart instanceof InHouse){
+            inHouseRadioMod.setSelected(true);
+            modId = modPart.getId();
             partIDMod.setText(Integer.toString(modId));
-            modName = modInHouse.getName();
-            modInventory = modInHouse.getStock();
-            modPrice = modInHouse.getPrice();
-            modMin = modInHouse.getMin();
-            modMax = modInHouse.getMax();
-            modMachineID = modInHouse.getMachineID();
+            modName = modPart.getName();
+            nameFieldMod.setText(modName);
+            modInventory = modPart.getStock();
+            inventoryFieldMod.setText(Integer.toString(modInventory));
+            modPrice = modPart.getPrice();
+            priceFieldMod.setText(Double.toString(modPrice));
+            modMin = modPart.getMin();
+            minInventoryFieldMod.setText(Integer.toString(modMin));
+            modMax = modPart.getMax();
+            maxInventoryFieldMod.setText(Integer.toString(modMax));
+            modMachineID = ((InHouse)modPart).getMachineID();
+            machineCompanyFieldMod.setText(Integer.toString(modMachineID));
+            machineCompanyLabelMod.setText("Machine ID");
         }
-        if(!inHouseToggle) {
-            modId = modOutsourced.getId();
-            modName = modOutsourced.getName();
-            modInventory = modOutsourced.getStock();
-            modPrice = modOutsourced.getPrice();
-            modMin = modOutsourced.getMin();
-            modMax = modOutsourced.getMax();
-            modCompanyName = modOutsourced.getCompanyName();
+        if(modPart instanceof Outsourced){
+            outsourcedRadioMod.setSelected(true);
+            modId = modPart.getId();
+            partIDMod.setText(Integer.toString(modId));
+            modName = modPart.getName();
+            nameFieldMod.setText(modName);
+            modInventory = modPart.getStock();
+            inventoryFieldMod.setText(Integer.toString(modInventory));
+            modPrice = modPart.getPrice();
+            priceFieldMod.setText(Double.toString(modPrice));
+            modMin = modPart.getMin();
+            minInventoryFieldMod.setText(Integer.toString(modMin));
+            modMax = modPart.getMax();
+            maxInventoryFieldMod.setText(Integer.toString(modMax));
+            modCompanyName = ((Outsourced)modPart).getCompanyName();
+            machineCompanyFieldMod.setText(modCompanyName);
+            machineCompanyLabelMod.setText("Company Name");
         }
 
     }
