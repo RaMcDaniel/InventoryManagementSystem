@@ -1,5 +1,6 @@
 package model;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 /** This class pertains to products, and the methods used to view and create them.
@@ -13,6 +14,8 @@ public class Product {
     private int min;
     private int max;
     private ObservableList<Part> associatedParts;
+
+    private ObservableList<Part> allParts = Inventory.getAllParts();
 
     /** This is a constructor for a product item.
      *
@@ -121,18 +124,24 @@ public class Product {
 
     /**  This method gets the product's associated list of parts.
      * @return the list of associated parts.
-
+     */
     public ObservableList<Part> getAllAssociatedParts() {
         return associatedParts;
     }
-     */
+
 
     /** This method adds a part to the product's associated list of parts.
-     * @param associatedParts the part added
-
-    public void addAssociatedParts(Part part) {
-    }
+     * @param part the part added
      */
+    public void addAssociatedParts(Part part) {
+        if(part == null){
+            Alerts.noneSelected.showAndWait();
+            return;
+        }
+        allParts.remove(part);
+        associatedParts.add(part);
+    }
+
 
     /**  This method deletes a part from the product's associated list of parts.
      *

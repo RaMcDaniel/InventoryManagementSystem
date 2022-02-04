@@ -1,6 +1,5 @@
 package controller;
 
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -18,7 +17,6 @@ import model.Product;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.Optional;
 import java.util.ResourceBundle;
 
 /** This class controls the FXML file for the main screen.
@@ -160,7 +158,7 @@ public class MainScreenController implements Initializable {
 
     /** This method gets text the user types in the search bar and displays parts that match.
      * It calls a name search and an ID search method to check by both of those.
-     * -----------CHANGE/MOVE ME-------------
+     *
      * @param actionEvent Not necessary to specify.
      */
     public void onTypePartSearch(ActionEvent actionEvent) {
@@ -195,7 +193,7 @@ public class MainScreenController implements Initializable {
 
     /** This method gets text the user types in the search bar and displays products that match.
      * It calls a name search and an ID search method to check by both of those.
-     * -----------CHANGE/MOVE ME-------------
+     *
      * @param actionEvent Not necessary to specify.
      */
     public void onTypeProductSearch(ActionEvent actionEvent) {

@@ -14,6 +14,7 @@ import javafx.stage.Stage;
 import model.Alerts;
 import model.Inventory;
 import model.Part;
+import model.Product;
 
 import java.io.IOException;
 import java.net.URL;
@@ -47,7 +48,7 @@ public class AddProductController implements Initializable {
     public TableView addProdTable;
 
     private ObservableList<Part> allParts = Inventory.getAllParts();
-    private ObservableList<Part> associatedParts = FXCollections.observableArrayList();
+    //private ObservableList<Part> associatedParts = Product.getAllAssociatedParts();
 
     /** This method is auto-created by extending Initializable.
      * It is the first thing in this object to be called.
@@ -62,7 +63,7 @@ public class AddProductController implements Initializable {
         addProdInvCol.setCellValueFactory(new PropertyValueFactory<>("stock"));
         addProdCostCol.setCellValueFactory(new PropertyValueFactory<>("price"));
 
-        addProdAssocTable.setItems(associatedParts);
+        //addProdAssocTable.setItems(Product.getAllAssociatedParts());
         addProdAssocIDCol.setCellValueFactory(new PropertyValueFactory<>("id"));
         addProdAssocNameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
         addProdAssocInvCol.setCellValueFactory(new PropertyValueFactory<>("stock"));
@@ -213,12 +214,7 @@ public class AddProductController implements Initializable {
      */
     public void onAddProdAddAssocPart(ActionEvent actionEvent) {
         Part part = (Part)addProdTable.getSelectionModel().getSelectedItem();
-        if(part == null){
-            Alerts.noneSelected.showAndWait();
-            return;
-        }
-        allParts.remove(part);
-        associatedParts.add(part);
+        //Product.addAssociatedParts(part);
     }
 
     /** This method is
@@ -233,7 +229,7 @@ public class AddProductController implements Initializable {
         }
         Optional<ButtonType> result = Alerts.remove.showAndWait();
         if(result.isPresent() && result.get() == ButtonType.OK) {
-            associatedParts.remove(part);
+            //associatedParts.remove(part);
             allParts.add(part);
             }
         }

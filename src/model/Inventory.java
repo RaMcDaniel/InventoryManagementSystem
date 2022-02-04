@@ -42,7 +42,6 @@ public class Inventory {
     public static void addProduct(int id, String name, double price, int stock, int min, int max, ObservableList associatedParts){
         Product newProduct = new Product(id, name, price, stock, min, max, associatedParts);
         Inventory.allProducts.add(newProduct);
-
     }
 
     /** This is a generic method to add a part.
@@ -55,7 +54,6 @@ public class Inventory {
         else{
             makeNewOutSourced(ID_COUNTER, name, price, stock, min, max, company);
         }
-
     }
 
     /** This method adds a new outsourced part.
@@ -121,8 +119,6 @@ public class Inventory {
         return null;
     }
 
-
-
     /**  This method looks up a part by name and displays a list of matching parts.
      *
      * @param partName a string provided by user
@@ -138,7 +134,6 @@ public class Inventory {
         }
         return partNameList;
     }
-
 
     /** This method looks up a product by name and displays a list of matching products.
      *
@@ -193,7 +188,7 @@ public class Inventory {
         }
         return true;
     }
-    
+
     /** This method deletes a product from a list.
      *
      * @param selectedProduct the product to be deleted
