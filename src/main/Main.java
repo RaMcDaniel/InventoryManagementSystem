@@ -11,7 +11,15 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-/** This is the main class, and entry to the program.
+/** FUTURE ENHANCEMENT
+ * The ID_COUNTER, on line 26, is used to give ID numbers to both parts and products. It is incremented by 1 each time a
+ * part or product is saved, and that newly incremented number becomes that new creation's ID. This means that parts and
+ * products share the same pool of ID numbers. I think it would make more sense to give them separate counters so the ID
+ * number makes it immediately obvious if you are looking at a part or a product. Maybe products could start at 1000 or
+ * something similar. In addition, I think it would also be useful if InHouse and Outsourced products were immediately
+ * distinguishable by ID. Maybe an "I" or "O" could be appended to respective numbers.
+ *
+ * This is the main class, and entry to the program.
  *
  */
 public class Main extends Application {
