@@ -13,6 +13,7 @@ import javafx.stage.Stage;
 import model.Alerts;
 import model.Inventory;
 import model.Part;
+import model.Product;
 
 import java.io.IOException;
 import java.net.URL;
@@ -275,6 +276,8 @@ public class ModifyProductController implements Initializable {
      * @param actionEvent Not necessary to specify.
      */
     public void onModProdAddAssocPart(ActionEvent actionEvent) {
+        Part part = (Part)modProdTable.getSelectionModel().getSelectedItem();
+        MainScreenController.passableProduct.addAssociatedParts(part);
     }
 
     /** This method is called when the remove associated part button is clicked.
@@ -282,6 +285,9 @@ public class ModifyProductController implements Initializable {
      * @param actionEvent Not necessary to specify.
      */
     public void onModProdRemoveAssocPart(ActionEvent actionEvent) {
+        Part part = (Part)modProdAssocTable.getSelectionModel().getSelectedItem();
+        MainScreenController.passableProduct.deleteAssociatedPart(part);
+        modProdAssocTable.setItems(MainScreenController.passableProduct.getAllAssociatedParts());
     }
 
     /** Method for editing ID field.

@@ -220,6 +220,7 @@ public class Inventory {
             Alerts.noneSelected.showAndWait();
             return false;
         }
+
         Optional<ButtonType> result = Alerts.delete.showAndWait();
         if(result.isPresent() && result.get() == ButtonType.OK){
             Inventory.getAllProducts().remove(selectedProduct);

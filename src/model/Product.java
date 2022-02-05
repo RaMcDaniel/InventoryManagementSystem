@@ -1,5 +1,6 @@
 package model;
 
+import controller.MainScreenController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.ButtonType;
@@ -156,9 +157,9 @@ public class Product {
             Alerts.noneSelected.showAndWait();
             return false;
         }
-        Optional<ButtonType> result = Alerts.delete.showAndWait();
-        if(result.isPresent() && result.get() == ButtonType.OK){
-            Inventory.getAllParts().remove(selectedAssociatedPart);
+        Optional<ButtonType> result = Alerts.remove.showAndWait();
+        if(result.isPresent() && result.get() == ButtonType.OK) {
+            associatedParts.remove(selectedAssociatedPart);
         }
         return true;
     }

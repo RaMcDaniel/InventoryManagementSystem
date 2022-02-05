@@ -9,6 +9,7 @@ import javafx.scene.control.Alert;
  */
 public class Alerts {
 
+    public static Alert hasParts = new Alert(Alert.AlertType.ERROR, "Remove parts before deleting product.");
     public static Alert inventory = new Alert(Alert.AlertType.ERROR, "Inventory must be greater than or equal to minimum. Inventory must be less than or equal to maximum.");
     public static Alert cancel = new Alert(Alert.AlertType.CONFIRMATION, "'Cancel' will lose all work on this page and return to main. Would you like to continue?");
     public static Alert noSuchPart = new Alert(Alert.AlertType.ERROR, "No part found matching that criteria");

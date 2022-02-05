@@ -162,6 +162,10 @@ public class MainScreenController implements Initializable {
      */
     public void onDeleteProduct(ActionEvent actionEvent) {
         Product SP = (Product)productsTable.getSelectionModel().getSelectedItem();
+        if(!(SP.getAllAssociatedParts().isEmpty())){
+            Alerts.hasParts.showAndWait();
+            return;
+        }
         boolean delete = Inventory.deleteProduct(SP);
         if(delete){
             productsTable.setItems(Inventory.getAllProducts());
