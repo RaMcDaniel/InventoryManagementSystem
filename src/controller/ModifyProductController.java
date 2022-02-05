@@ -19,6 +19,7 @@ import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
+import static main.Main.ID_COUNTER;
 
 
 /** This class controls the modifyProduct FXML screen.
@@ -71,18 +72,24 @@ public class ModifyProductController implements Initializable {
         modProdMax.setText(Integer.toString(prodModMax));
 
 
-        modProdTable.setItems(MainScreenController.passableProduct.getAllAssociatedParts());
+        modProdTable.setItems(Inventory.getAllParts());
         modProdIDCol.setCellValueFactory(new PropertyValueFactory<>("id"));
         modProdNameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
         modProdInvCol.setCellValueFactory(new PropertyValueFactory<>("stock"));
         modProdCostCol.setCellValueFactory(new PropertyValueFactory<>("price"));
+
+        modProdAssocTable.setItems(MainScreenController.passableProduct.getAllAssociatedParts());
+        modProdAssocIDCol.setCellValueFactory(new PropertyValueFactory<>("id"));
+        modProdAssocNameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
+        modProdAssocInvCol.setCellValueFactory(new PropertyValueFactory<>("stock"));
+        modProdAssocCostCol.setCellValueFactory(new PropertyValueFactory<>("price"));
 
     }
 
 
     /** This method gets text the user types in the search bar and displays parts that match.
      * It calls a name search and an ID search method to check by both of those.
-     * -----------CHANGE/MOVE ME-------------
+     *
      * @param actionEvent Not necessary to specify.
      */
     public void onModProductSearchField(ActionEvent actionEvent) {
@@ -158,6 +165,23 @@ public class ModifyProductController implements Initializable {
      * @throws IOException
      */
     public void onModProdSave(ActionEvent actionEvent) throws IOException {
+
+        if(!(prodModName!=null && prodModPrice!=0 && prodModInventory!=0 && prodModMin!=0 && prodModMax!=0)) {
+            Alerts.inputError("form", "all fields must be completed. Press 'Enter' on keyboard after each to register.").showAndWait();
+            return;
+        }
+        if(!(prodModMin <= prodModInventory && prodModInventory <= prodModMax)) {
+            Alerts.inventory.showAndWait();
+            return;
+        }
+
+        //THIS IS WRONG. IT DUPLICATES THE PRODUCT
+        //Inventory.addProduct(ID_COUNTER, name, price, stock, min, max, associatedParts);
+
+        ID_COUNTER = ID_COUNTER + 1;
+
+
+
         Parent root = FXMLLoader.load(getClass().getResource("/view/MainScreen.fxml"));
         Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         Scene scene = new Scene(root, 800, 600);
