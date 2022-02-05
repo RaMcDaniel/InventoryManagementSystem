@@ -19,7 +19,7 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) throws Exception {
 
-        addTestData();
+        //addTestData();
         
         Parent root = FXMLLoader.load(getClass().getResource("/view/MainScreen.fxml"));
         stage.setTitle("C482 Performance Assessment");

@@ -1,7 +1,5 @@
 package model;
 
-import controller.MainScreenController;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.ButtonType;
 
@@ -142,7 +140,6 @@ public class Product {
             Alerts.noneSelected.showAndWait();
             return;
         }
-        //allParts.remove(part);
         associatedParts.add(part);
     }
 

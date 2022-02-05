@@ -156,12 +156,25 @@ public class MainScreenController implements Initializable {
         stage.show();
     }
 
-    /** This method is called when Delete button is clicked under the products table.
+    /** RUNTIME ERROR
+     * A run time error occurred before I added lines: 173-176.
+     * When the delete button is clicked without a product highlighted it throws a NullPointerException at line 178, because
+     * there is no product to evaluate the line SP.getAllAssociatedParts().isEmpty() on. I solved this by moving the
+     * (SP=null) check to before the .isEmpty evaluation. Previously I had it in the deleteProduct() method, which
+     * is called later.
+     *
+     *
+     * This method is called when Delete button is clicked under the products table.
      *
      * @param actionEvent Not necessary to specify.
      */
     public void onDeleteProduct(ActionEvent actionEvent) {
         Product SP = (Product)productsTable.getSelectionModel().getSelectedItem();
+        if (SP==null){
+            Alerts.noneSelected.showAndWait();
+            return;
+        }
+
         if(!(SP.getAllAssociatedParts().isEmpty())){
             Alerts.hasParts.showAndWait();
             return;

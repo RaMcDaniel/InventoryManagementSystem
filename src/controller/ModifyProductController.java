@@ -108,13 +108,11 @@ public class ModifyProductController implements Initializable {
                     parts.add(part);
                 }
                 else{
-                    //System.out.println("No Part containing " + query + " was found");
                     Alerts.noSuchPart.showAndWait();
                     modProdTable.setItems(Inventory.getAllParts());
                 }
             }
             catch (NumberFormatException n){
-                //System.out.println("No Part containing " + query + " was found");
                 Alerts.noSuchPart.showAndWait();
             }
         }

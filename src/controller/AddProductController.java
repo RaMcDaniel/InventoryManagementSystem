@@ -86,7 +86,7 @@ public class AddProductController implements Initializable {
 
     /** This method gets text the user types in the search bar and displays parts that match.
      * It calls a name search and an ID search method to check by both of those.
-     * -----------CHANGE/MOVE ME-------------
+     *
      * @param actionEvent Not necessary to specify.
      */
     public void onAddProductSearchField(ActionEvent actionEvent) {
@@ -263,8 +263,8 @@ public class AddProductController implements Initializable {
         return;
     }
 
-    /** This method is
-     * -----------CHANGE/MOVE ME-------------
+    /** This method is adds a selected part from all parts to that product's list of parts.
+     *
      * @param actionEvent Not necessary to specify.
      */
     public void onAddProdAddAssocPart(ActionEvent actionEvent) {
@@ -272,8 +272,8 @@ public class AddProductController implements Initializable {
         associatedParts.add(part);
     }
 
-    /** This method is
-     * -----------CHANGE/MOVE ME-------------
+    /** This method removes a selected part from that product's list of parts.
+     *
      * @param actionEvent Not necessary to specify.
      */
     public void onAddProdRemoveAssocPart(ActionEvent actionEvent) throws IOException {

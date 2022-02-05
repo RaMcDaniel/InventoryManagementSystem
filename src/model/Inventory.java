@@ -1,6 +1,5 @@
 package model;
 
-import controller.MainScreenController;
 import controller.ModifyPartController;
 import controller.ModifyProductController;
 import javafx.collections.FXCollections;
@@ -10,7 +9,6 @@ import javafx.scene.control.ButtonType;
 import java.util.Optional;
 
 import static controller.AddPartController.inHouseToggle;
-import static controller.ModifyPartController.modInventory;
 
 /** This class contains all stored part and product information, and methods to get and set related information.
  *
