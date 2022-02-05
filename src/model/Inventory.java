@@ -1,5 +1,8 @@
 package model;
 
+import controller.MainScreenController;
+import controller.ModifyPartController;
+import controller.ModifyProductController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.ButtonType;
@@ -7,6 +10,7 @@ import javafx.scene.control.ButtonType;
 import java.util.Optional;
 
 import static controller.AddPartController.inHouseToggle;
+import static controller.ModifyPartController.modInventory;
 
 /** This class contains all stored part and product information, and methods to get and set related information.
  *
@@ -156,23 +160,38 @@ public class Inventory {
      *
      * @param index which position in part's parameter list is being updated
      * @param selectedPart The part being updated
-
+     */
     public static void updatePart(int index, Part selectedPart){
-
-            WHAT THE HELL IS THIS FOR???
+        selectedPart.setName(ModifyPartController.modName);
+        selectedPart.setPrice(ModifyPartController.modPrice);
+        selectedPart.setStock(ModifyPartController.modInventory);
+        selectedPart.setMin(ModifyPartController.modMin);
+        selectedPart.setMax(ModifyPartController.modMax);
+        if(selectedPart instanceof InHouse){
+            ((InHouse)selectedPart).setMachineID(ModifyPartController.modMachineID);
+        }
+        if(selectedPart instanceof Outsourced){
+            ((Outsourced)selectedPart).setCompanyName(ModifyPartController.modCompanyName);
+        }
     }
-    */
+
 
 
     /**  This method updates a specific piece of a product's information.
      *
      * @param index  which position in product's parameter list is being updated
      * @param newProduct the product being updated
-
-    public static void updateProduct(int index, Product newProduct){
-                        WHAT THE HELL IS THIS FOR???
-    }
      */
+    public static void updateProduct(int index, Product newProduct){
+        newProduct.setName(ModifyProductController.prodModName);
+        newProduct.setPrice(ModifyProductController.prodModPrice);
+        newProduct.setStock(ModifyProductController.prodModInventory);
+        newProduct.setMin(ModifyProductController.prodModMin);
+        newProduct.setMax(ModifyProductController.prodModMax);
+        //newProduct.setAssociatedParts(ModifyPartController.notyetmade);
+
+    }
+
 
     /** This method deletes a part from a list.
      *

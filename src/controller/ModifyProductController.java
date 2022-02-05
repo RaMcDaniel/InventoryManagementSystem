@@ -175,8 +175,7 @@ public class ModifyProductController implements Initializable {
             return;
         }
 
-        //THIS IS WRONG. IT DUPLICATES THE PRODUCT
-        //Inventory.addProduct(ID_COUNTER, name, price, stock, min, max, associatedParts);
+        Inventory.updateProduct(1, MainScreenController.passableProduct);
 
         ID_COUNTER = ID_COUNTER + 1;
 

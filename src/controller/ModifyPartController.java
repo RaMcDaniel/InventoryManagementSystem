@@ -253,17 +253,9 @@ public class ModifyPartController implements Initializable {
             return;
         }
 
-        MainScreenController.passablePart.setName(modName);
-        MainScreenController.passablePart.setPrice(modPrice);
-        MainScreenController.passablePart.setStock(modInventory);
-        MainScreenController.passablePart.setMin(modMin);
-        MainScreenController.passablePart.setMax(modMax);
-        if(MainScreenController.passablePart instanceof InHouse){
-            ((InHouse)MainScreenController.passablePart).setMachineID(modMachineID);
-        }
-        if(MainScreenController.passablePart instanceof Outsourced){
-            ((Outsourced)MainScreenController.passablePart).setCompanyName(modCompanyName);
-        }
+        Inventory.updatePart(1,MainScreenController.passablePart);
+
+
 
         Parent root = FXMLLoader.load(getClass().getResource("/view/MainScreen.fxml"));
         Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
