@@ -266,5 +266,12 @@ public class AddProductController implements Initializable {
             allParts.add(part);
             }
         }
+
+    /** Method for editing ID field.
+     * It is not editable.
+     * @param actionEvent Not necessary to specify.
+     */
+    public void onAddProdID(ActionEvent actionEvent) {
     }
+}
 

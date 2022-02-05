@@ -260,4 +260,11 @@ public class ModifyProductController implements Initializable {
      */
     public void onModProdRemoveAssocPart(ActionEvent actionEvent) {
     }
+
+    /** Method for editing ID field.
+     * It is not editable.
+     * @param actionEvent Not necessary to specify.
+     */
+    public void onModProdID(ActionEvent actionEvent) {
+    }
 }
