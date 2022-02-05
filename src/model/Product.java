@@ -2,6 +2,9 @@ package model;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.ButtonType;
+
+import java.util.Optional;
 
 /** This class pertains to products, and the methods used to view and create them.
  *
@@ -147,10 +150,18 @@ public class Product {
      *
      * @param selectedAssociatedPart the part deleted
      * @return returns true if completed
-
-    public boolean deleteAssociatedPart(Part selectedAssociatedPart){
-        return boolean;
-    }
      */
+    public boolean deleteAssociatedPart(Part selectedAssociatedPart){
+        if (selectedAssociatedPart==null){
+            Alerts.noneSelected.showAndWait();
+            return false;
+        }
+        Optional<ButtonType> result = Alerts.delete.showAndWait();
+        if(result.isPresent() && result.get() == ButtonType.OK){
+            Inventory.getAllParts().remove(selectedAssociatedPart);
+        }
+        return true;
+    }
+
 
 }

@@ -9,10 +9,12 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import model.Alerts;
 import model.Inventory;
 import model.Part;
+import model.Product;
 
 import java.io.IOException;
 import java.net.URL;
@@ -62,19 +64,20 @@ public class AddProductController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        /**
-        addProdTable.setItems(allParts);
+        addProdTable.setItems(Inventory.getAllParts());
         addProdIDCol.setCellValueFactory(new PropertyValueFactory<>("id"));
         addProdNameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
         addProdInvCol.setCellValueFactory(new PropertyValueFactory<>("stock"));
         addProdCostCol.setCellValueFactory(new PropertyValueFactory<>("price"));
 
-        //addProdAssocTable.setItems(Product.getAllAssociatedParts());
+        addProdAssocTable.setItems(MainScreenController.passableProduct.getAllAssociatedParts());
         addProdAssocIDCol.setCellValueFactory(new PropertyValueFactory<>("id"));
         addProdAssocNameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
         addProdAssocInvCol.setCellValueFactory(new PropertyValueFactory<>("stock"));
         addProdAssocCostCol.setCellValueFactory(new PropertyValueFactory<>("price"));
-        */
+
+
+
     }
 
 
@@ -247,7 +250,7 @@ public class AddProductController implements Initializable {
      */
     public void onAddProdAddAssocPart(ActionEvent actionEvent) {
         Part part = (Part)addProdTable.getSelectionModel().getSelectedItem();
-        //Product.addAssociatedParts(part);
+        MainScreenController.passableProduct.addAssociatedParts(part);
     }
 
     /** This method is
@@ -262,7 +265,7 @@ public class AddProductController implements Initializable {
         }
         Optional<ButtonType> result = Alerts.remove.showAndWait();
         if(result.isPresent() && result.get() == ButtonType.OK) {
-            //associatedParts.remove(part);
+            MainScreenController.passableProduct.deleteAssociatedPart(part);
             allParts.add(part);
             }
         }
