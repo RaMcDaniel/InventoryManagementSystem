@@ -161,7 +161,7 @@ public class ModifyProductController implements Initializable {
     /** This method calls methods to save products, and switches the user to the main screen.
      *
      * @param actionEvent Not necessary tp specify.
-     * @throws IOException
+     * @throws IOException if the screen does not exist.
      */
     public void onModProdSave(ActionEvent actionEvent) throws IOException {
 
@@ -191,7 +191,7 @@ public class ModifyProductController implements Initializable {
     /** This method discards information in text field and returns user to the main screen.
      *
      * @param actionEvent Not necessary to specify.
-     * @throws IOException
+     * @throws IOException if the screen does not exist.
      */
     public void onModProdCancel(ActionEvent actionEvent) throws IOException {
         Optional<ButtonType> result = Alerts.cancel.showAndWait();

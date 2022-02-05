@@ -157,6 +157,7 @@ public class AddProductController implements Initializable {
     /** This method is called when the save button is clicked. It changes the user to the main screen.
      * It also calls methods that create the Product from the screen's text fields.
      * @param actionEvent Not necessary to specify.
+     * @throws IOException if the screen does not exist.
      */
     public void onProdSave(ActionEvent actionEvent) throws IOException{
 
@@ -186,6 +187,7 @@ public class AddProductController implements Initializable {
     /** This method is called when the cancel button is clicked. It discards typed information and changes to main screen.
      *
      * @param actionEvent Not necessary to specify.
+     * @throws IOException if the screen does not exist.
      */
     public void onProdCancel(ActionEvent actionEvent) throws IOException {
         Optional<ButtonType> result = Alerts.cancel.showAndWait();
@@ -275,6 +277,7 @@ public class AddProductController implements Initializable {
     /** This method removes a selected part from that product's list of parts.
      *
      * @param actionEvent Not necessary to specify.
+     * @throws IOException if the screen does not exist.
      */
     public void onAddProdRemoveAssocPart(ActionEvent actionEvent) throws IOException {
         Part part = (Part)addProdAssocTable.getSelectionModel().getSelectedItem();

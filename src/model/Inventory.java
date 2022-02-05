@@ -48,6 +48,15 @@ public class Inventory {
 
     /** This is a generic method to add a part.
      * It calls methods for adding in-house or outsourced parts depending on the toggle on the add part page.
+     *
+     * @param ID_COUNTER part ID - the global constant ID_COUNTER
+     * @param name the part name
+     * @param price the part's price
+     * @param stock the amount of part in stock
+     * @param min the minimum amount of stock allowed
+     * @param max the maximum amount of stock allowed
+     * @param company the company outsourced products are purchased from
+     * @param machineID the ID on the machine an in-house part is created on.
      */
     public static void addPart(int ID_COUNTER, String name, double price, int stock, int min, int max, int machineID, String company){
         if(inHouseToggle){
@@ -67,7 +76,6 @@ public class Inventory {
      * @param min the minimum amount of stock allowed
      * @param max the maximum amount of stock allowed
      * @param company the company outsourced products are purchased from
-     * @return
      */
     public static void makeNewOutSourced(int id, String name, double price, int stock, int min, int max, String company) {
         Outsourced newOutSourced = new Outsourced(id, name, price, stock, min, max, company);
@@ -83,7 +91,6 @@ public class Inventory {
      * @param min the minimum amount of stock allowed
      * @param max the maximum amount of stock allowed
      * @param machineID ID number of machine in-house parts are created on
-     * @return
      */
     public static void makeNewInHouse(int id, String name, double price, int stock, int min, int max, int machineID) {
         InHouse newInHouse = new InHouse(id, name, price, stock, min, max, machineID);

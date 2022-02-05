@@ -241,6 +241,7 @@ public class ModifyPartController implements Initializable {
     /**  This method is called save button is clicked. It calls methods to save information, and switches uer to main screen.
      *
      * @param actionEvent Not necessary to specify.
+     * @throws IOException if the screen does not exist.
      */
     public void onSaveButtonMod(ActionEvent actionEvent) throws IOException {
 
@@ -268,6 +269,7 @@ public class ModifyPartController implements Initializable {
     /**  This method is called when the cancel button is clicked. It discards typed information and returns user to main screen.
      *
      * @param actionEvent Not necessary to specify.
+     * @throws IOException if the screen does not exist.
      */
     public void onCancelButtonMod(ActionEvent actionEvent) throws IOException {
 

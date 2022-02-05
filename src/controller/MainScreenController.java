@@ -74,6 +74,7 @@ public class MainScreenController implements Initializable {
     /** This method changes user to the addPart screen.
      *
      * @param actionEvent Not necessary to specify.
+     * @throws IOException if the screen does not exist.
      */
     public void onAddPart(ActionEvent actionEvent) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/view/AddPart.fxml"));
@@ -87,6 +88,7 @@ public class MainScreenController implements Initializable {
     /** This method changes user to the modifyPart screen.
      *
      * @param actionEvent Not necessary to specify.
+     * @throws IOException if the screen does not exist.
      */
     public void onModifyPart(ActionEvent actionEvent) throws IOException{
         Part SP = (Part)partsTable.getSelectionModel().getSelectedItem();
@@ -123,6 +125,7 @@ public class MainScreenController implements Initializable {
     /** This method changes user to the addProduct screen.
      *
      * @param actionEvent Not necessary to specify.
+     * @throws IOException if the screen does not exist.
      */
     public void onAddProduct(ActionEvent actionEvent) throws IOException{
         Parent root = FXMLLoader.load(getClass().getResource("/view/AddProduct.fxml"));
@@ -136,6 +139,7 @@ public class MainScreenController implements Initializable {
     /** This method changes user to the modifyProduct screen.
      *
      * @param actionEvent Not necessary to specify.
+     * @throws IOException if the screen does not exist.
      */
     public void onModifyProduct(ActionEvent actionEvent) throws IOException {
         Product SP = (Product)productsTable.getSelectionModel().getSelectedItem();

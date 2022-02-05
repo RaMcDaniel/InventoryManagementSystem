@@ -212,6 +212,7 @@ public class AddPartController implements Initializable {
     /** When the save button is clicked, it saves the part information to a new part object, and clears the variables.
      * It then returns to the main screen.
      * @param actionEvent Not necessary to specify.
+     * @throws IOException if the screen does not exist.
      */
     public void onSaveButton(ActionEvent actionEvent) throws IOException {
 
@@ -240,6 +241,7 @@ public class AddPartController implements Initializable {
     /** When cancel is clicked, nothing is saved or created, and you return to the main screen.
      *
      * @param actionEvent Not necessary to specify.
+     * @throws IOException if the screen does not exist.
      */
     public void onCancelButton(ActionEvent actionEvent) throws IOException {
         Optional<ButtonType> result = Alerts.cancel.showAndWait();

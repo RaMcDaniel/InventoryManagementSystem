@@ -3,7 +3,6 @@ package main;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.*;
-import controller.MainScreenController;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -12,7 +11,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 /** FUTURE ENHANCEMENT
- * The ID_COUNTER, on line 26, is used to give ID numbers to both parts and products. It is incremented by 1 each time a
+ * The ID_COUNTER, on line 25, is used to give ID numbers to both parts and products. It is incremented by 1 each time a
  * part or product is saved, and that newly incremented number becomes that new creation's ID. This means that parts and
  * products share the same pool of ID numbers. I think it would make more sense to give them separate counters so the ID
  * number makes it immediately obvious if you are looking at a part or a product. Maybe products could start at 1000 or
