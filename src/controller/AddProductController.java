@@ -1,6 +1,7 @@
 package controller;
 
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -20,6 +21,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
+
+import static main.Main.ID_COUNTER;
 
 /** This class controls the addProduct FXML screen.
  *
@@ -54,7 +57,7 @@ public class AddProductController implements Initializable {
     int max;
 
     private ObservableList<Part> allParts = Inventory.getAllParts();
-    //private ObservableList<Part> associatedParts = Product.getAllAssociatedParts();
+    public ObservableList<Part> associatedParts = FXCollections.observableArrayList();
 
     /** This method is auto-created by extending Initializable.
      * It is the first thing in this object to be called.
@@ -70,7 +73,7 @@ public class AddProductController implements Initializable {
         addProdInvCol.setCellValueFactory(new PropertyValueFactory<>("stock"));
         addProdCostCol.setCellValueFactory(new PropertyValueFactory<>("price"));
 
-        addProdAssocTable.setItems(MainScreenController.passableProduct.getAllAssociatedParts());
+        addProdAssocTable.setItems(associatedParts);
         addProdAssocIDCol.setCellValueFactory(new PropertyValueFactory<>("id"));
         addProdAssocNameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
         addProdAssocInvCol.setCellValueFactory(new PropertyValueFactory<>("stock"));
@@ -156,6 +159,22 @@ public class AddProductController implements Initializable {
      * @param actionEvent Not necessary to specify.
      */
     public void onProdSave(ActionEvent actionEvent) throws IOException{
+
+        if(!(name!=null && price!=0 && stock!=0 && min!=0 && max!=0)) {
+            Alerts.inputError("form", "all fields must be completed. Press 'Enter' on keyboard after each to register.").showAndWait();
+            return;
+        }
+        if(!(min <= stock && stock <= max)) {
+            Alerts.inventory.showAndWait();
+            return;
+        }
+
+        Inventory.addProduct(ID_COUNTER, name, price, stock, min, max, associatedParts);
+
+        ID_COUNTER = ID_COUNTER + 1;
+
+
+
         Parent root = FXMLLoader.load(getClass().getResource("/view/MainScreen.fxml"));
         Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         Scene scene = new Scene(root, 800, 600);
@@ -250,7 +269,7 @@ public class AddProductController implements Initializable {
      */
     public void onAddProdAddAssocPart(ActionEvent actionEvent) {
         Part part = (Part)addProdTable.getSelectionModel().getSelectedItem();
-        MainScreenController.passableProduct.addAssociatedParts(part);
+        associatedParts.add(part);
     }
 
     /** This method is
@@ -265,8 +284,7 @@ public class AddProductController implements Initializable {
         }
         Optional<ButtonType> result = Alerts.remove.showAndWait();
         if(result.isPresent() && result.get() == ButtonType.OK) {
-            MainScreenController.passableProduct.deleteAssociatedPart(part);
-            allParts.add(part);
+            associatedParts.remove(part);
             }
         }
 

@@ -141,7 +141,7 @@ public class Product {
             Alerts.noneSelected.showAndWait();
             return;
         }
-        allParts.remove(part);
+        //allParts.remove(part);
         associatedParts.add(part);
     }
 

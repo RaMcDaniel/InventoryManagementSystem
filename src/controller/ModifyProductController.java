@@ -71,7 +71,7 @@ public class ModifyProductController implements Initializable {
         modProdMax.setText(Integer.toString(prodModMax));
 
 
-        modProdTable.setItems(Inventory.getAllParts());
+        modProdTable.setItems(MainScreenController.passableProduct.getAllAssociatedParts());
         modProdIDCol.setCellValueFactory(new PropertyValueFactory<>("id"));
         modProdNameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
         modProdInvCol.setCellValueFactory(new PropertyValueFactory<>("stock"));
