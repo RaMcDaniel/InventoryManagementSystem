@@ -18,6 +18,7 @@ import javafx.stage.Stage;
  * something similar. In addition, I think it would also be useful if InHouse and Outsourced products were immediately
  * distinguishable by ID. Maybe an "I" or "O" could be appended to respective numbers.
  *
+ * Javadoc files are all found in src/main/. View in browser using src/main/index.html
  * This is the main class, and entry to the program.
  *
  */
